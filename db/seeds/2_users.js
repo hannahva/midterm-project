@@ -1,4 +1,5 @@
 exports.seed = function(knex, Promise) {
+  console.log("We're seeing users");
   return knex('users').del()
     .then(function () {
       return Promise.all([
