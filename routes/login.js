@@ -44,12 +44,12 @@ module.exports = (knex) => {
 
     checkUserCredentials(req.body.email, req.body.password, (err, userId) => {
       if (err){
-        console.err("session not set")
+        console.error("session not set")
         res.status(403).send("Sorry, email or password incorrect");
       } else {
       req.session.user_id = userId;
       //once /lists route setup, do redirect to it
-      res.send("successfully logged in");
+      res.redirect("/");
       }
     });
 
