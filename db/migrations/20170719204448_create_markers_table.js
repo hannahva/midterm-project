@@ -13,7 +13,7 @@ exports.up = function(knex, Promise) {
     .references("id").inTable("lists");
     table.integer("user_id")
     .references("id").inTable("users");
-    table.timestamps();
+    table.timestamps(true, true);
   })
   ]);
 };

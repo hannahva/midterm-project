@@ -1,7 +1,7 @@
 
 exports.seed = function(knex, Promise) {
   console.log("We're seeding markers");
-  return knex('markers').del()
+  return knex('markers')
     .then(function () {
        return Promise.all([
         knex('markers')

@@ -1,6 +1,6 @@
 exports.seed = function(knex, Promise) {
-  console.log("We're seeing users");
-  return knex('users').del()
+  console.log("We're seeding users");
+  return knex('users')
     .then(function () {
       return Promise.all([
         knex('users').insert({id: 1, name: 'Alice', email: 'alice@alice.com', password: 1234}),
