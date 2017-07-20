@@ -6,19 +6,59 @@ const bcrypt = require("bcrypt");
 
 
 module.exports = (knex) => {
+  function createUser(email, password) {
+  return knex.insert({email: email, password: password})
+      .into('users')
+      .returning('id')
+}
+  const checkIfUserExists = (givenEmail, givenPW, callback) => {
+    knex("users")
+      .where({ email: givenEmail })
+      .asCallback((err, result) => {
+        if (err) {
+          callback(err);
+        }
+        //if a user is found return true
+        if (result.length > 0)  {
+          callback(null, true);
+        } else {
+          callback(null, false);
+        }
+      });
+  };
 
+
+//register endpoint
   router.get("/", (req, res) => {
     res.render("register")
+    return;
   });
 
+//register post
 router.route("/").post((req, res) => {
   const textPassword = req.body.password;
   const hashed_password = bcrypt.hashSync(textPassword, 10);
 
- knex.insert({email: req.body.email, password: hashed_password}).into('users')
-  .then( function (result) {
-      res.send("successfully logged in");
-       })
+ checkIfUserExists(req.body.email, req.body.password, (err, userFound) => {
+  if (err) {
+    console.error("Invalid input")
+    res.status(403).send(err.stack)
+  } else {
+
+    if(userFound) {
+      res.redirect("/api/login");
+    } else {
+      //create a user and do things
+      createUser(req.body.email, req.body.password)
+      .then(function (result) {
+        req.session.user_id = result[0].id;
+        res.send("successfully logged in");
+        return;
+      });
+    }
+ }
+ })
+
 });
 return router;
 }
