@@ -2,6 +2,7 @@
 
 const express = require('express');
 const router  = express.Router();
+const bcrypt = require('bcrypt');
 
 
 module.exports = (knex) => {
@@ -18,7 +19,7 @@ module.exports = (knex) => {
           return;
         }
         const pass = result[0].password;
-        if (givenPW === pass) {
+        if (bcrypt.compareSync(givenPW, pass)) {
           callback(null, result[0].id);
         } else {
           callback(new Error('email or password not found'));
