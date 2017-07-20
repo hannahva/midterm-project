@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-     <link rel="icon" href="/images/favicon.ico"> 
+     <link rel="icon" href="/images/favicon.ico">
 
     <title>WikiMaps</title>
 
@@ -37,9 +37,7 @@
             </div>
             <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="#">Register</a></li>
-                    <li><a href="#">Login</a></li>
-                    <li><a href="#">Logout</a></li>
+                  <% include _login %>
                 </ul>
                 <form class="navbar-form navbar-right">
                     <input type="text" class="form-control" placeholder="Search...">
@@ -81,7 +79,7 @@
                                 <th>position</th>
                             </tr>
                         </thead>
-                        <tbody class="table-markerinfo">                           
+                        <tbody class="table-markerinfo">
                         <!-- Marker info goes here -->
                         </tbody>
                     </table>

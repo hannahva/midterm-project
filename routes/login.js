@@ -33,7 +33,7 @@ module.exports = (knex) => {
       res.redirect("/")
       return;
     }
-    res.render("login")
+    res.render("_login")
   });
 
   router.route("/").post((req, res) => {
