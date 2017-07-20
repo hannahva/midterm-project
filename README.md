@@ -27,3 +27,47 @@
 
 - Node 5.10.x or above
 - NPM 3.8.x or above
+
+# Curl tests
+
+## Get all lists, markers 
+`GET /lists`
+
+`curl -X GET http://localhost:8080/api/lists | json_pp`
+
+## Get individual list, markers 
+`GET /lists/:list_id`
+
+`curl -X GET http://localhost:8080/api/lists/:list_id | json_pp`
+
+## Create new list
+`POST /lists`
+
+`curl -X POST --data "name=BestBars&description=AListofthebestbarsinTimbuktu" http://localhost:8080/api/lists`
+
+## Update list 
+`PUT /lists/:list_id`
+
+`curl -X PUT --data "name=WorstBars" http://localhost:8080/api/lists/:list_id`
+
+## Delete user 
+DELETE /users/:user_id
+curl -X DELETE http://localhost:3000/users/:user_id
+
+## Get all markers 
+GET /markers
+curl -X GET http://localhost:3000/markers
+
+## Create new marker 
+POST /markers
+curl -X POST http://localhost:3000/markers -d {}
+
+## Update marker 
+PUT /markers/:marker_id
+curl -X PUT http://localhost:3000/markers/:marker_id -d {}
+
+## Delete marker 
+DELETE /markers/:marker_id
+curl -X DELETE http://localhost:3000/markers/:marker_id
+
+
