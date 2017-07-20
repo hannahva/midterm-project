@@ -1,0 +1,15 @@
+
+  <% if (id) { %>
+    <form method="post" action="/api/logout">
+      <input type="submit" value="Logout">
+    </form>
+  <% } else { %>
+    <form method="POST" action="/api/login">
+      <input type="email" label="Email" name="email">
+      <input type="password" label="Password" name="password">
+      <input type="submit" value="Login">
+    </form>
+
+  <% } %>
+
+
