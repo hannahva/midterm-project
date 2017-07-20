@@ -29,6 +29,8 @@ const logoutRoutes = require("./routes/logout");
 //         The :status token will be colored red for server error codes, yellow for client error codes, cyan for redirection codes, and uncolored for all other codes.
 app.use(morgan('dev'));
 
+
+
 app.use(cookieSession({
   name: "session",
   keys: ["banana", "blue"]

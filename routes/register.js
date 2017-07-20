@@ -2,6 +2,8 @@
 
 const express = require('express');
 const router  = express.Router();
+const bcrypt = require("bcrypt");
+
 
 module.exports = (knex) => {
 
@@ -9,18 +11,17 @@ module.exports = (knex) => {
     res.render("register")
   });
 
-  return router;
-}
-
 router.route("/").post((req, res) => {
+  const textPassword = req.body.password;
+  const hashed_password = bcrypt.hashSync(textPassword, 10);
 
- knex('user').insert({email: req.body.email})
-  .insert({password: req.body.password})
+ knex.insert({email: req.body.email, password: hashed_password}).into('users')
   .then( function (result) {
-          res.send("successfully logged in");
+      res.send("successfully logged in");
        })
-  return router;
 });
+return router;
+}
 
 // //register endpoint
 // app.get('/register', (req, res) => {
