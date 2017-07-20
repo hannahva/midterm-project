@@ -37,6 +37,16 @@ module.exports = (knex) => {
       });
   });
 
+    // Get list contributors
+    router.get("/:list_id/contributors", (req, res) => {
+    knex
+      .table('lists')
+      .innerJoin('contributors', req.params.list_id, '=', 'contributors.list_id')
+      .then((results) => {
+        res.json(results);
+      });
+  });
+
   // Create new list
   router.post("/", (req, res) => {
     // perform validations here
