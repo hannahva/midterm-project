@@ -11,10 +11,8 @@ function getLists() {
             }
             // Display list function
             function displayList(props) {
-                console.log('Props:', props);
-                var $rows = $("<tr>").append($(`<td>${props.id}</td><td>${props.name}</td><td>${props.description}</td>`));
-                var $table = $(".listtable").append($rows);
-
+                // console.log('Props:', props);
+                var $lists = $(".list-favourites").append(`<li><a href="/api/lists/${props.id}">${props.name}</a></li>`);
             }
 
         })
@@ -26,12 +24,3 @@ function getLists() {
 $(document).ready(function () {
     getLists();
 });
-
-// var $header = $("<header>").addClass('tweet-header');
-// $header.append($(`<img src="${tweet.user.avatars.small}"/>`));
-// $header.append($(`<h1>${tweet.user.name}</h1>`));
-// $header.append($(`<h2>${tweet.user.handle}</h2>`));
-// var $tweet = $('<article>').addClass('tweet');
-//   $tweet.append($header);
-//   $tweet.append($body);
-//   $tweet.append($footer);

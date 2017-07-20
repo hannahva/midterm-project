@@ -10,9 +10,15 @@ function initMap() {
   // Listen for click on map
   google.maps.event.addListener(map, 'click', function (event) {
     // Add marker
-    // addMarker({coords:event.latLng});
-    addMarker({ coords: event.latLng });
+    // console.log(event);
+    alert(`Now we add the marker to the list!`);
   });
+
+  function showMarkerInfo(clickedMarker){
+    console.log(clickedMarker);
+    $(".table-markerinfo").empty();
+    $(".table-markerinfo").append(`<tr><td>${clickedMarker.id}</td><td>${clickedMarker.user_id}</td><td>${clickedMarker.title}</td><td>${clickedMarker.description}</td><td>${clickedMarker.position}</td></tr>`);
+  }
 
   // Get markers
   axios.get('/api/markers')
@@ -22,7 +28,7 @@ function initMap() {
       // Loop through markers
       for (var i = 0; i < markers.length; i++) {
         // Add marker
-        console.log(markers[i]);
+        // console.log(markers[i]);
         addMarker(markers[i]);
       }
       // Add Marker Function
@@ -32,6 +38,8 @@ function initMap() {
         props.coords['lng'] = props.lng;
         // console.log('Props:', props);
         var marker = new google.maps.Marker({
+          id: props.id,
+          user_id: props.user_id,
           title: props.title,
           position: props.coords,
           map: map,
@@ -39,7 +47,7 @@ function initMap() {
           //icon:props.iconImage
         });
         marker.addListener('click', function () {
-          alert(this.description);
+          showMarkerInfo(this);
         });
       }
 
