@@ -5,13 +5,9 @@ const router  = express.Router();
 
 module.exports = (knex) => {
 
-  router.get("/", (req, res) => {
-    knex
-      .select("*")
-      .from("users")
-      .then((results) => {
-        res.json(results);
-    });
+  router.route("/").post((req, res) => {
+    req.session = null;
+    res.redirect("/api/login")
   });
 
   return router;
