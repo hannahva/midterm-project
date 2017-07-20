@@ -7,7 +7,7 @@ module.exports = (knex) => {
 
   router.route("/").post((req, res) => {
     req.session = null;
-    res.redirect("/api/login")
+    res.redirect("/")
   });
 
   return router;
