@@ -7,7 +7,9 @@ const bcrypt = require("bcrypt");
 
 module.exports = (knex) => {
   function createUser(email, password) {
-  return knex.insert({email: email, password: password})
+//bcrypt password
+  const hashed_password = bcrypt.hashSync(password, 10);
+  return knex.insert({email: email, password: hashed_password})
       .into('users')
       .returning('id')
 }
@@ -36,9 +38,6 @@ module.exports = (knex) => {
 
 //register post
 router.route("/").post((req, res) => {
-  const textPassword = req.body.password;
-  const hashed_password = bcrypt.hashSync(textPassword, 10);
-
  checkIfUserExists(req.body.email, req.body.password, (err, userFound) => {
   if (err) {
     console.error("Invalid input")
