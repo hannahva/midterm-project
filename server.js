@@ -23,6 +23,7 @@ const markerRoutes = require("./routes/markers");
 const loginRoutes = require("./routes/login");
 const registerRoutes = require("./routes/register");
 const logoutRoutes = require("./routes/logout");
+const profileRoutes = require("./routes/profile");
 // Fake route to test Bootstrap
 const testIndexRoutes = require("./routes/test");
 
@@ -63,6 +64,7 @@ app.use("/api/login", loginRoutes(knex));
 app.use("/api/register", registerRoutes(knex));
 app.use("/api/logout", logoutRoutes(knex));
 app.use("/api/test", testIndexRoutes(knex));
+app.use("/api/profile", profileRoutes(knex));
 
 // Home page
 app.get("/", (req, res) => {
