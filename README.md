@@ -33,21 +33,22 @@
 ## Get all lists, markers 
 `GET /lists`
 
-`curl -X GET http://localhost:8080/api/lists`
+`curl -X GET http://localhost:8080/api/lists | json_pp`
 
 ## Get individual list, markers 
 `GET /lists/:list_id`
 
-`curl -X GET http://localhost:8080/api/lists/:list_id`
+`curl -X GET http://localhost:8080/api/lists/:list_id | json_pp`
 
 ## Create new list
 `POST /lists`
 
 `curl -X POST --data "name=BestBars&description=AListofthebestbarsinTimbuktu" http://localhost:8080/api/lists`
 
-## Update user 
-PUT /lists/:user_id
-curl -X PUT http://localhost:3000/users/:user_id -d {}
+## Update list 
+`PUT /lists/:list_id`
+
+`curl -X PUT --data "name=WorstBars" http://localhost:8080/api/lists/:list_id`
 
 ## Delete user 
 DELETE /users/:user_id

@@ -18,14 +18,14 @@ module.exports = (knex) => {
     knex
       .select("*")
       .from("lists")
-      .where("id", list_id)
+      .where("id", req.params.list_id)
       .then((results) => {
         res.json(results);
       });
   });
 
   // Create new list
-  router.post('/', (req, res) => {
+  router.post("/", (req, res) => {
     // perform validations here
     let list = [];
     console.log(req.body);
@@ -36,7 +36,7 @@ module.exports = (knex) => {
       }];
     }
     // Insert list into lists, returns the id as a confirmation
-    knex('lists')
+    knex("lists")
       .insert(list, 'id').then(function (id, err) {
         if (err) {
           console.log(err);
@@ -48,22 +48,19 @@ module.exports = (knex) => {
   });
 
   // Update list
-  router.put('/:list_id', (req, res) => {
+  router.put("/:list_id", (req, res) => {
     // perform validation here
-    let list = [{
-      name: UNDEFINED,
-      description: UNDEFINED,
-    }];
-    console.log(req.body);
+    let list = {};
+    // console.log(req.body);
     if (true) {
-      list = [{
+      list = {
         name: req.body.name,
         description: req.body.description
-      }];
+      };
     }
-    knex('lists')
-      .where('id', list_id)
-      .update(list, 'id')
+    knex("lists")
+      .where("id", req.params.list_id)
+      .update(list, "id")
       .then(function (id, err) {
         if (err) {
           console.log(err);
@@ -77,10 +74,11 @@ module.exports = (knex) => {
   // Delete list
   router.delete("/:list_id", (req, res) => {
     knex("lists")
-      .where("id", list_id)
+      .where("id", req.params.list_id)
       .del()
       .then((results) => {
-        res.json(results);
+        console.log(`Delete successful`);
+        res.send(`Delete successful\n`);
       });
   });
 
