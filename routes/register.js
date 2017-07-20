@@ -51,7 +51,7 @@ router.route("/").post((req, res) => {
       createUser(req.body.email, req.body.password)
       .then(function (result) {
         req.session.user_id = result[0].id;
-        res.send("successfully logged in");
+        res.redirect("/");
         return;
       });
     }
