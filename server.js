@@ -50,6 +50,11 @@ app.use("/styles", sass({
 }));
 app.use(express.static("public"));
 
+app.use((req, res, next) => {
+  app.locals.id = req.session.user_id;
+  next();
+})
+
 // Mount all resource routes
 app.use("/api/users", usersRoutes(knex));
 app.use("/api/lists", listsRoutes(knex));
