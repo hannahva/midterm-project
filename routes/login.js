@@ -24,9 +24,6 @@ module.exports = (knex) => {
         } else {
           callback(new Error('email or password not found'));
         }
-      })
-      .catch((error) => {
-        console.log(error);
     });
   };
 
