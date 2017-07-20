@@ -1,0 +1,11 @@
+
+<% if (!id) { %>
+  <form action="/api/register" method="POST">
+      <label for="register">Sign Up</label>
+      <input type="email" name="email" placeholder="Enter Email">
+      <input type="password" name="password" placeholder="Enter Password">
+      <input type="submit" value="Sign Up">
+  </form>
+<% } %>
+
+
