@@ -5,6 +5,7 @@ const router = express.Router();
 
 module.exports = (knex) => {
 
+  // Get all lists
   router.get("/", (req, res) => {
     knex
       .select("*")
@@ -14,11 +15,23 @@ module.exports = (knex) => {
       });
   });
 
+  // Get lists by id
   router.get("/:list_id", (req, res) => {
     knex
       .select("*")
       .from("lists")
       .where("id", req.params.list_id)
+      .then((results) => {
+        res.json(results);
+      });
+  });
+
+  // Get all markers by list_id
+  router.get("/:list_id/markers", (req, res) => {
+    knex
+      .select("*")
+      .from("markers")
+      .where("markers.id", req.params.list_id)
       .then((results) => {
         res.json(results);
       });
