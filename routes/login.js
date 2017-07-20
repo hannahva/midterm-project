@@ -9,7 +9,6 @@ module.exports = (knex) => {
   const checkUserCredentials = (givenEmail, givenPW, callback) => {
     knex("users")
       .where({ email: givenEmail })
-      .select("password")
       .asCallback((err, result) => {
         if (err){
           return console.error(err);
@@ -33,7 +32,7 @@ module.exports = (knex) => {
       res.redirect("/")
       return;
     }
-    res.render("_login")
+    res.render("./partials/_header")
   });
 
   router.route("/").post((req, res) => {

@@ -5,9 +5,9 @@ const router  = express.Router();
 
 module.exports = (knex) => {
 
-  router.route("/").post((req, res) => {
-    req.session = null;
-    res.redirect("/")
+  router.get("/", (req, res) => {
+      res.render("profile")
+
   });
 
   return router;
