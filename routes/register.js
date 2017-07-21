@@ -11,7 +11,6 @@ module.exports = (knex) => {
     const hashed_password = bcrypt.hashSync(password, 10);
     return knex.insert({email: email, password: hashed_password})
       .into("users")
-      .returning("id");
   }
   // check if user email is in the the database
   const checkIfUserExists = (givenEmail, givenPW, callback) => {
@@ -38,6 +37,7 @@ module.exports = (knex) => {
         req.flash('errors', "Invalid");
 
       } else {
+
         //if email is found in db -> send message
         if(userFound) {
           req.flash('errors', 'Email already in use');
@@ -45,6 +45,12 @@ module.exports = (knex) => {
           // if either input field is blank -> send message
         } else if ((req.body.email && req.body.password) === "") {
           req.flash('errors', 'Invalid Information');
+
+        //create a user and do things
+        createUser(req.body.email, req.body.password)
+        .then(function (result) {
+          req.session.user = result[0];
+
           res.redirect("/");
           //else register user, set cookie session
         } else {

@@ -13,13 +13,15 @@
             </div>
             <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav navbar-right">
-                <% if (id) { %>
-                  <button type="button" class="profile-button" href="/api/profile">Profile</button>
-                <% } %>
                 <div class="form-inline login">
                   <% include ../_login %>
                 </div>
                 </ul>
+                <div class="profile-link">
+                 <% if (user) { %>
+                   <a class="profile" href="/api/profile"><%= user.email %></a>
+                 <% } %>
+                </div>
             </div>
         </div>
     </nav>

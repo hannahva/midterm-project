@@ -19,7 +19,7 @@ module.exports = (knex) => {
         }
         const pass = result[0].password;
         if (bcrypt.compareSync(givenPW, pass)) {
-          callback(null, result[0].id);
+          callback(null, result[0]);
         } else {
           callback(new Error('email or password not found'));
         }
@@ -39,12 +39,12 @@ module.exports = (knex) => {
     const email = req.body.email;
     const password = req.body.password;
 
-    checkUserCredentials(req.body.email, req.body.password, (err, userId) => {
+    checkUserCredentials(req.body.email, req.body.password, (err, user) => {
       if (err){
         console.error("session not set")
         res.status(403).send("Sorry, email or password incorrect");
       } else {
-      req.session.user_id = userId;
+      req.session.user = user;
       //once /lists route setup, do redirect to it
       res.redirect("/");
       }
