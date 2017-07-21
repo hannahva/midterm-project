@@ -30,6 +30,8 @@ body {
 }
 .navbar-brand {
   color: #EFFAF8;
+  font-size: 40px;
+  margin-top: 10px;
 }
 
 /*
@@ -101,6 +103,7 @@ body {
   float: right;
 }
 
+
 .form-control.register {
  width: 100%;
 }
@@ -129,10 +132,7 @@ body {
 
 
 #map {
-  display: flex;
   height:450px;
   width:90%;
 }
-#map.col-sm-6 {
-  flex-grow: 2;
-}
+
