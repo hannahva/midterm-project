@@ -4,7 +4,8 @@
 
 /* Move down content because we have a fixed navbar that is 50px tall */
 body {
-  padding-top: 50px;
+  font-family: 'Lato', sans-serif;
+  padding-top: 100px;
 }
 
 
@@ -23,6 +24,12 @@ body {
  */
 .navbar-fixed-top {
   border: 0;
+}
+.navbar-light {
+  background-color: #B0D8F0;
+}
+.navbar-brand {
+  color: #EFFAF8;
 }
 
 /*
@@ -66,6 +73,12 @@ body {
   background-color: #428bca;
 }
 
+
+.sidebar {
+  background-color: #EFFAF8;
+}
+
+
 /*
  * Main content
  */
@@ -83,27 +96,43 @@ body {
   margin-top: 0;
 }
 
-
-/*
- * Placeholder dashboard ideas
- */
-
-.placeholders {
-  margin-bottom: 30px;
-  text-align: center;
-}
-.placeholders h4 {
-  margin-bottom: 0;
-}
-.placeholder {
-  margin-bottom: 20px;
-}
-.placeholder img {
-  display: inline-block;
-  border-radius: 50%;
+.form-group.register {
+  display: block;
+  float: right;
 }
 
-#map{
-      height:400px;
-      width:100%;
-    }
+.form-control.register {
+ width: 100%;
+}
+
+.form-inline.login {
+  border: 1px solid #B0D8F0;
+  margin: 20px;
+}
+
+.form-control.login {
+
+}
+
+.btn.btn-primary {
+  background-color: #4095DE;
+  border: 0;
+  color: #EFFAF8;
+}
+
+.btn.btn-secondary {
+  background-color: #4095DE;
+  border: 0;
+  color: #EFFAF8;
+}
+
+
+
+#map {
+  display: flex;
+  height:450px;
+  width:90%;
+}
+#map.col-sm-6 {
+  flex-grow: 2;
+}
