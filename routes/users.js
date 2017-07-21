@@ -16,10 +16,12 @@ module.exports = (knex) => {
   });
 
     // Get user favourites
-    router.get("/:user_id/favs", (req, res) => {
+    router.get("/:user_id/favourites", (req, res) => {
     knex
-      .table('users')
-      .innerJoin('favourites', req.params.user_id, '=', 'contributors.user_id')
+      .select('*')
+      .from('favourites')
+      .leftJoin('lists', 'favourites.list_id', 'lists.id')
+      .where('user_id', req.params.user_id)
       .then((results) => {
         res.json(results);
       });

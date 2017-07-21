@@ -37,15 +37,19 @@ module.exports = (knex) => {
       });
   });
 
-    // Get list contributors
-    router.get("/:list_id/contributors", (req, res) => {
+    // Get list contributions
+    router.get("/:list_id/contributions", (req, res) => {
     knex
-      .table('lists')
-      .innerJoin('contributors', req.params.list_id, '=', 'contributors.list_id')
+      .select('*')
+      .from('contributions')
+      .leftJoin('users', 'contributions.user_id', 'users.id')
+      .where('list_id', req.params.list_id)
       .then((results) => {
         res.json(results);
       });
   });
+
+  // knex.select('*').from('users').leftJoin('accounts', 'users.id', 'accounts.user_id')
 
   // Create new list
   router.post("/", (req, res) => {
