@@ -1,13 +1,38 @@
 function getMarkers(list_id) {
+    var markers = [];
     axios.get(`/api/lists/${list_id}/markers`)
         .then(function (response) {
-            var markers = response.data;
+            markers = response.data;
+        })
+        .then(function () {
             for (var i = 0; i < markers.length; i++) {
                 // Add markers
-                console.log(markers[i]);
-                // alert(markers[i]);
+                // console.log(markers[i]);
+                renderMarker(markers[i]);
             }
         });
+}
+
+function renderMarker(marker) {
+    console.log(marker);
+    console.log('marker.id', marker.id);
+    console.log('marker.user_id', marker.user_id);
+    console.log('marker.title', marker.title);
+    console.log('marker.description', marker.description);
+    console.log('marker.position', marker.position);
+
+    var $data0 = $("<td>").text(marker.id);
+    $data1 = $("<td>").text(marker.user_id);
+    $data2 = $("<td>").text(marker.title);
+    $data3 = $("<td>").text(marker.description);
+    $data4 = $("<td>").text(marker.position);
+    var $row = $("<tr>");
+    $row.append($data0);
+    $row.append($data1);
+    $row.append($data2);
+    $row.append($data3);
+    $row.append($data4);
+    var $markers = $(".table-markerinfo").append($row);
 }
 
 function getLists() {
@@ -24,7 +49,7 @@ function getLists() {
             // Display list function
             function displayList(props) {
                 // console.log('Props:', props);
-                var $row = $(`<a href="">${props.name}</a>`);
+                var $row = $(`<a href="#"></a>`).text(props.name);
                 var $list = $("<li>");
                 $list.append($row);
                 var $lists = $(".list-favourites").append($list);
