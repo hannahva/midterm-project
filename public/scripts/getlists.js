@@ -32,12 +32,42 @@ function renderMarker(marker) {
     $row.append($data2);
     $row.append($data3);
     $row.append($data4);
+    $(".table-markerinfo").empty();
     var $markers = $(".table-markerinfo").append($row);
 }
 
 function getLists() {
     // Get lists
     axios.get('/api/lists')
+        .then(function (response) {
+            // console.log(response);
+            var lists = response.data;
+            // Loop through lists
+            for (var i = 0; i < lists.length; i++) {
+                // Display list
+                displayList(lists[i]);
+            }
+            // Display list function
+            function displayList(props) {
+                // console.log('Props:', props);
+                var $row = $(`<a href="#"></a>`).text(props.name);
+                var $list = $("<li>");
+                $list.append($row);
+                var $lists = $(".list-all").append($list);
+
+                $list.on('click', function (event) {
+                    event.preventDefault();
+                    getMarkers(props.id);
+                })
+            }
+        })
+        .catch(function (error) {
+            console.log("Error:", error);
+        });
+}
+function getFavourites(user_id) {
+    // Get lists
+    axios.get(`/api/users/${user_id}/favourites`)
         .then(function (response) {
             // console.log(response);
             var lists = response.data;
@@ -68,5 +98,6 @@ function getLists() {
 $(document).ready(function () {
 
     getLists();
+    getFavourites(1);
 
 });
