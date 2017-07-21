@@ -4,6 +4,11 @@
       <input type="submit" class="form-control" value="Logout">
     </form>
   <% } else { %>
+  <% if (errors && errors.length) { %>
+    <% errors.forEach(error => { %>
+      <h2>Error: <%= error %></h2>
+    <% }); %>
+  <% } %>
     <form method="POST" action="/api/login">
       <input type="email" class="form-control" label="Email" name="email" placeholder="Email">
       <input type="password" class="form-control" label="Password" name="password"

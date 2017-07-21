@@ -46,13 +46,7 @@ module.exports = (knex) => {
         } else if ((req.body.email && req.body.password) === "") {
           req.flash('errors', 'Invalid Information');
 
-          //create a user and do things
-          createUser(req.body.email, req.body.password)
-            .then(function (result) {
-              req.session.user = result[0];
 
-              res.redirect("/");
-            });
           //else register user, set cookie session
         } else {
           createUser(req.body.email, req.body.password)
