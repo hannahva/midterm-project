@@ -39,10 +39,6 @@ app.use(cookieSession({
 }))
 app.use(flash());
 
-// app.use(function(req, res, next) {
-//   res.locals.message = req.flash();
-//   next();
-// });
 // Log knex SQL queries to STDOUT as well
 app.use(knexLogger(knex));
 
