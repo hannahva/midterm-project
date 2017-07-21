@@ -26,6 +26,13 @@
                     </script>
                     <% } %>
             </div>
+            <div class="error-flash-message">
+              <% if (errorsMessage && errorsMessage.length) { %>
+                <% errorsMessage.forEach(error => { %>
+                  <p>Sorry! <%= error %></p>
+                <% }); %>
+              <% } %>
+            </div>
         </div>
     </div>
 </nav>
