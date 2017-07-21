@@ -1,3 +1,4 @@
+
 <nav class="navbar navbar-light navbar-fixed-top">
         <div class="container-fluid">
             <div class="navbar-header">
@@ -13,7 +14,7 @@
             <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav navbar-right">
                 <% if (id) { %>
-                  <a class="profile" href="/api/profile">Profile</a>
+                  <button type="button" class="profile-button" href="/api/profile">Profile</button>
                 <% } %>
                 <div class="form-inline login">
                   <% include ../_login %>

@@ -10,6 +10,7 @@ const sass = require("node-sass-middleware");
 const app = express();
 const cookieSession = require("cookie-session");
 const bcrypt = require("bcrypt");
+const flash = require('connect-flash');
 
 const knexConfig = require("./knexfile");
 const knex = require("knex")(knexConfig[ENV]);
@@ -32,12 +33,16 @@ const testIndexRoutes = require("./routes/test");
 //         The :status token will be colored red for server error codes, yellow for client error codes, cyan for redirection codes, and uncolored for all other codes.
 app.use(morgan('dev'));
 
-
-
 app.use(cookieSession({
   name: "session",
   keys: ["banana", "blue"]
-}));
+}))
+app.use(flash());
+
+// app.use(function(req, res, next) {
+//   res.locals.message = req.flash();
+//   next();
+// });
 // Log knex SQL queries to STDOUT as well
 app.use(knexLogger(knex));
 
@@ -68,7 +73,9 @@ app.use("/api/profile", profileRoutes(knex));
 
 // Home page
 app.get("/", (req, res) => {
-  res.render("index");
+  res.render('index', {
+    errors: req.flash('errors')
+ });
 });
 
 app.listen(PORT, () => {

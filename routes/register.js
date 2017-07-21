@@ -7,12 +7,13 @@ const bcrypt = require("bcrypt");
 
 module.exports = (knex) => {
   function createUser(email, password) {
-//bcrypt password
-  const hashed_password = bcrypt.hashSync(password, 10);
-  return knex.insert({email: email, password: hashed_password})
+    //insert email and hashed password into db
+    const hashed_password = bcrypt.hashSync(password, 10);
+    return knex.insert({email: email, password: hashed_password})
       .into("users")
-      .returning("id")
+      .returning("id");
   }
+  // check if user email is in the the database
   const checkIfUserExists = (givenEmail, givenPW, callback) => {
     knex("users")
       .where({ email: givenEmail })
@@ -30,35 +31,33 @@ module.exports = (knex) => {
   };
 
 
-//register endpoint
-  router.get("/", (req, res) => {
-    res.render("index")
-    return;
-  });
-
   //register post
   router.route("/").post((req, res) => {
-   checkIfUserExists(req.body.email, req.body.password, (err, userFound) => {
-    if (err) {
-      console.error("Invalid input")
-      res.status(403).send(err.stack)
-    } else {
+    checkIfUserExists(req.body.email, req.body.password, (err, userFound) => {
+      if (err) {
+        req.flash('errors', "Invalid");
 
-      if(userFound) {
-        res.redirect("/");
       } else {
-        //create a user and do things
-        createUser(req.body.email, req.body.password)
-        .then(function (result) {
-          debugger;
-          req.session.user_id = result[0];
+        //if email is found in db -> send message
+        if(userFound) {
+          req.flash('errors', 'Email already in use');
           res.redirect("/");
-          return;
-        });
+          // if either input field is blank -> send message
+        } else if ((req.body.email && req.body.password) === "") {
+          req.flash('errors', 'Invalid Information');
+          res.redirect("/");
+          //else register user, set cookie session
+        } else {
+          createUser(req.body.email, req.body.password)
+            .then(function (result) {
+              req.session.user_id = result[0];
+              res.redirect("/");
+              return;
+            });
+        }
       }
-    }
-   })
+    });
 
   });
   return router;
-}
+};
