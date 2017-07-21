@@ -67,6 +67,7 @@ body {
 }
 
 .nav-sidebar > li > a {
+  color:#B0D8F0;
   padding-right: 20px;
   padding-left: 20px;
 }
@@ -80,12 +81,14 @@ body {
 }
 
 
+
 .sidebar {
   background-color: #EFFAF8;
 }
 
 .sidebar h1 {
-  font-size: 2em;
+  color: #4095DE;
+  font-size: 1.5em;
 }
 
 /*
@@ -137,6 +140,12 @@ body {
 }
 div.profile-link {
    display: block;
+   float: right;
+   margin-top: 1em;
+}
+
+div.error-flash-message {
+  display: block;
    float: right;
    margin-top: 1em;
 }
