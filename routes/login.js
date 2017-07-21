@@ -41,8 +41,8 @@ module.exports = (knex) => {
 
     checkUserCredentials(req.body.email, req.body.password, (err, user) => {
       if (err){
-        req.flash('errors', 'Sorry, email or password incorrect');
-        res.redirect("/");
+        req.flash('errorsMessage', 'Email or password incorrect');
+        res.redirect("/")
         // console.error("session not set")
         // res.status(403).send("Sorry, email or password incorrect");
       } else {

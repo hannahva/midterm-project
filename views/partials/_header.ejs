@@ -14,18 +14,21 @@
             <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav navbar-right">
                 <div class="form-inline login">
-                  <% if (errors && errors.length) { %>
-    <% errors.forEach(error => { %>
-      <p>Error: <%= error %></p>
-    <% }); %>
-  <% } %>
+
                   <% include ../_login %>
                 </div>
                 </ul>
                 <div class="profile-link">
-                 <% if (user) { %>
-                   <a class="profile" href="/api/profile"><%= user.email %></a>
-                 <% } %>
+                  <% if (user) { %>
+                    <a class="profile" href="/api/profile"><%= user.email %></a>
+                  <% } %>
+                 </div>
+                <div class="error-flash-message">
+                  <% if (errorsMessage && errorsMessage.length) { %>
+                    <% errorsMessage.forEach(error => { %>
+                      <p>Sorry! <%= error %></p>
+                    <% }); %>
+                  <% } %>
                 </div>
             </div>
         </div>

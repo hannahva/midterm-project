@@ -70,7 +70,8 @@ app.use("/api/profile", profileRoutes(knex));
 // Home page
 app.get("/", (req, res) => {
   res.render('index', {
-    errors: req.flash('errors')
+    errors: req.flash('errors'),
+    errorsMessage: req.flash('errorsMessage')
  });
 });
 
