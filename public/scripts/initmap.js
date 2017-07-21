@@ -16,8 +16,8 @@ function initMap() {
 
   function showMarkerInfo(clickedMarker){
     console.log(clickedMarker);
-    $(".table-markerinfo").empty();
-    $(".table-markerinfo").append(`<tr><td>${clickedMarker.id}</td><td>${clickedMarker.user_id}</td><td>${clickedMarker.title}</td><td>${clickedMarker.description}</td><td>${clickedMarker.position}</td></tr>`);
+    $(".table-selected-markerinfo").empty();
+    $(".table-selected-markerinfo").append(`<tr><td>${clickedMarker.id}</td><td>${clickedMarker.user_id}</td><td>${clickedMarker.title}</td><td>${clickedMarker.description}</td><td>${clickedMarker.position}</td></tr>`);
   }
 
   // Get markers
