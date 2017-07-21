@@ -49,12 +49,13 @@ body {
     left: 0;
     z-index: 1000;
     display: block;
-    padding: 20px;
+    padding-left: 5px;
+    padding-top: 5px;
     overflow-x: hidden;
     overflow-y: auto;
     /* Scrollable contents if viewport is shorter than content. */
     background-color: #f5f5f5;
-    border-right: 1px solid #eee;
+    border-right: 0;
   }
 }
 
@@ -80,6 +81,10 @@ body {
 
 .sidebar {
   background-color: #EFFAF8;
+}
+
+.sidebar h1 {
+  font-size: 2em;
 }
 
 /*
@@ -126,7 +131,18 @@ body {
   color: #EFFAF8;
 }
 
+div.profile-link {
+  display: block;
+  float: right;
+  margin-top: 1em;
+}
+
+a.profile {
+  color: #EFFAF8;
+  font-size: 2em;
+}
+
 #map {
   height: 450px;
-  width: 90%;
+  width: 100%;
 }

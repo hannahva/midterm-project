@@ -52,7 +52,7 @@ app.use("/styles", sass({
 app.use(express.static("public"));
 
 app.use((req, res, next) => {
-  app.locals.id = req.session.user_id;
+  app.locals.user = req.session.user;
   next();
 })
 

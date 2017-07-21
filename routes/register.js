@@ -11,7 +11,6 @@ module.exports = (knex) => {
   const hashed_password = bcrypt.hashSync(password, 10);
   return knex.insert({email: email, password: hashed_password})
       .into("users")
-      .returning("id")
   }
   const checkIfUserExists = (givenEmail, givenPW, callback) => {
     knex("users")
@@ -50,8 +49,7 @@ module.exports = (knex) => {
         //create a user and do things
         createUser(req.body.email, req.body.password)
         .then(function (result) {
-          debugger;
-          req.session.user_id = result[0];
+          req.session.user = result[0];
           res.redirect("/");
           return;
         });
