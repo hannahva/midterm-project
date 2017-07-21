@@ -13,25 +13,7 @@
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-right">
                 <div class="form-inline login">
-<<<<<<< HEAD
                     <% include ../_login %>
-=======
-
-                  <% include ../_login %>
-                </div>
-                </ul>
-                <div class="profile-link">
-                  <% if (user) { %>
-                    <a class="profile" href="/api/profile"><%= user.email %></a>
-                  <% } %>
-                 </div>
-                <div class="error-flash-message">
-                  <% if (errorsMessage && errorsMessage.length) { %>
-                    <% errorsMessage.forEach(error => { %>
-                      <p>Sorry! <%= error %></p>
-                    <% }); %>
-                  <% } %>
->>>>>>> 3a4be68e42621dc3c04f538a803cfe5854562da6
                 </div>
             </ul>
             <div class="profile-link">
