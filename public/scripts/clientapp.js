@@ -1,7 +1,7 @@
 var markers = [];
 var markerOnMap = [];
 
-function getMarkersFromList(list_id) {
+var getMarkersFromList = function (list_id) {
 
     clearMarkers();
 
@@ -19,7 +19,7 @@ function getMarkersFromList(list_id) {
         });
 }
 
-function renderMarker(marker) {
+var renderMarker = function (marker) {
 
     var $data0 = $("<td>").text(marker.id);
     $data1 = $("<td>").text(marker.user_id);
@@ -37,15 +37,14 @@ function renderMarker(marker) {
 }
 
 // Deletes all markers from the map
-function clearMarkers() {
+var clearMarkers = function () {
     for (var i = 0; i < markerOnMap.length; i++) {
         markerOnMap[i].setMap(null);
     }
     markerOnMap = [];
-    console.log("Clearing markers!");
 }
 
-function getLists() {
+var getLists = function () {
     // Get lists
     axios.get('/api/lists')
         .then(function (response) {
@@ -75,7 +74,7 @@ function getLists() {
         });
 }
 
-function getFavourites(user_id) {
+var getFavourites = function (user_id) {
     // Get lists
     axios.get(`/api/users/${user_id}/favourites`)
         .then(function (response) {
@@ -105,7 +104,7 @@ function getFavourites(user_id) {
         });
 }
 
-function setUpMapListener() {
+var setUpMapListener = function () {
     // Listen for click on map
     map.addListener('click', function (event) {
         // Add marker
@@ -115,7 +114,7 @@ function setUpMapListener() {
     });
 }
 
-function showMarkerInfo(clickedMarker) {
+var showMarkerInfo = function (clickedMarker) {
     console.log(clickedMarker);
     $(".table-selected-markerinfo").empty();
     $(".table-selected-markerinfo")
@@ -123,7 +122,7 @@ function showMarkerInfo(clickedMarker) {
 }
 
 // Add Marker Function
-function addMarkerToMap(props) {
+var addMarkerToMap = function (props) {
     props['coords'] = {};
     props.coords['lat'] = props.lat;
     props.coords['lng'] = props.lng;
@@ -143,7 +142,7 @@ function addMarkerToMap(props) {
     markerOnMap.push(marker);
 }
 
-function setUpMaps() {
+var setUpMaps = function () {
 
     // Get markers
     axios.get('/api/markers')
@@ -161,7 +160,3 @@ function setUpMaps() {
             console.log(error);
         });
 }
-
-// var setUpMaps = function (){
-
-// }
