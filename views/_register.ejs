@@ -1,16 +1,23 @@
 
 <% if (!user) { %>
-  <form action="/api/register" method="POST">
+<div class="col-sm-3 col-md-2 form-group register">
+  <form id="register" action="/api/register" method="POST">
       <label for="register">Sign Up</label>
       <input type="email" class="form-control" name="email" placeholder="Enter Email">
       <input type="password" class="form-control" name="password" placeholder="Enter Password">
       <input type="submit" class="btn btn-primary" value="Sign Up">
   </form>
+
+
   <% if (errors && errors.length) { %>
     <% errors.forEach(error => { %>
       <p>Sorry! <%= error %></p>
     <% }); %>
+  <% } else { %>
+  <p>Sign in or sign up to view more maps!</p>
   <% } %>
+</div>
 <% } %>
+
 
 
