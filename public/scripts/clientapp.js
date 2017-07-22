@@ -34,9 +34,9 @@ var renderMarker = function (marker) {
     $data2 = $("<td>").text(marker.title);
     $data3 = $("<td>").text(marker.description);
     $data4 = $("<td>").text(marker.position);
-    var $editButtons = $(`<td><i class="fa fa-trash-o fa-2x" aria-hidden="true"></i>
-                        <i class="fa fa-pencil fa-2x" aria-hidden="true"></i><td>`);
-    var $starButton = $(`<td><i class="fa fa-star-o fa-2x" aria-hidden="true"></i></td>`);
+    var $editButtons = $(`<td><i id="garbage-can" class="fa fa-trash-o fa-2x" aria-hidden="true"></i>
+                        <i id="pencil-button" class="fa fa-pencil fa-2x" aria-hidden="true"></i><td>`);
+    var $starButton = $(`<td><i id="star-button" class="fa fa-star-o fa-2x" aria-hidden="true"></i></td>`);
     var $row = $("<tr>");
     $row.append($data0);
     $row.append($data1);
@@ -46,6 +46,10 @@ var renderMarker = function (marker) {
     $row.append($starButton);
     $(".table-markerinfo").empty();
     var $markers = $(".table-markerinfo").append($row);
+
+    $starButton.click(function () {
+    $(this).toggleClass('star-button-active');
+    });
 }
 
 // Deletes all markers from the map
@@ -101,6 +105,7 @@ var getFavourites = function (user_id) {
             function displayList(props) {
                 // console.log('Props:', props);
                 var $row = $(`<a href="#"></a>`).text(props.name);
+                var $starButton = $(`<td><i id="star-button" class="fa fa-star-o fa-2x" aria-hidden="true"></i></td>`);
                 var $list = $("<li>");
                 $list.append($row);
                 var $lists = $(".list-favourites").append($list);

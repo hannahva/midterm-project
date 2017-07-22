@@ -1,8 +1,22 @@
 /*
  * Base structure.
  */
-.fa .fa-star-o {
-  vertical-align: center;
+#garbage-can:hover {
+  color: red;
+  cursor: pointer;
+}
+
+#pencil-button:hover {
+  color: #a3ccff;
+  cursor: pointer;
+}
+
+#star-button {
+  text-align: center;
+  cursor: pointer;
+}
+
+.star-button-active {
   color: yellow;
 }
 
