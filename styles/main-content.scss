@@ -14,7 +14,7 @@ body {
   padding: 20px;
 }
 
-p {
+.sign-up-message {
   color: #4095DE;
   font-size: 3em;
   padding-top: 10px;
@@ -29,12 +29,6 @@ p {
 }
 .main .page-header {
   margin-top: 0;
-}
-
-div.error-flash-message {
-  display: inline;
-   float: right;
-   margin-top: 1em;
 }
 
 #map {

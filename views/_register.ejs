@@ -10,11 +10,13 @@
 
 
   <% if (errors && errors.length) { %>
+  <div class="error-message-register">
     <% errors.forEach(error => { %>
       <p>Sorry! <%= error %></p>
     <% }); %>
+    </div>
   <% } else { %>
-  <p>Sign in or sign up to view more maps!</p>
+  <p class="sign-up-message">Sign in or sign up to view more maps!</p>
   <% } %>
 </div>
 <% } %>
