@@ -1,6 +1,11 @@
 /*
  * Base structure.
  */
+.fa .fa-star-o {
+  vertical-align: center;
+  color: yellow;
+}
+
 /* Move down content because we have a fixed navbar that is 50px tall */
 body {
   font-family: 'Lato', sans-serif;
