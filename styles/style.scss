@@ -107,6 +107,16 @@ body {
   padding: 20px;
 }
 
+p {
+  color: #4095DE;
+  font-size: 3em;
+  padding-top: 10px;
+}
+
+p .hidden {
+  display: none;
+}
+
 @media (min-width: 768px) {
   .main {
     padding-right: 40px;
