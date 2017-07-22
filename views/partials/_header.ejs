@@ -15,14 +15,7 @@
                 <div class="form-inline login">
                   <% include ../_login %>
                 </div>
-                </ul>
-                <div class="error-flash-message">
-                  <% if (errorsMessage && errorsMessage.length) { %>
-                    <% errorsMessage.forEach(error => { %>
-                      <p>Sorry! <%= error %></p>
-                    <% }); %>
-                  <% } %>
-                </div>
+
             </ul>
             <div class="profile-link">
                 <% if (user) { %>
@@ -33,6 +26,13 @@
                         Window.userInfo = <%= user.id %>
                     </script>
                     <% } %>
+            </div>
+            <div class="error-flash-message">
+              <% if (errorsMessage && errorsMessage.length) { %>
+                <% errorsMessage.forEach(error => { %>
+                  <p>Sorry! <%= error %></p>
+                <% }); %>
+              <% } %>
             </div>
         </div>
     </div>
