@@ -1,17 +1,21 @@
 var markers = [];
 var markerOnMap = [];
+var selectedList = 1;
+
 // Render Marker Info Header
 var renderMarkerHeader = function (list) {
     console.log("list", list.name);
     $(".header-all-markers").empty();
     $(".header-all-markers").append(list.name);
+    $(".table-markerinfo").empty();
 }
 
 var getMarkersFromList = function (list) {
 
     renderMarkerHeader(list);
+    selectedList = list.id;
     clearMarkers();
-    
+
 
     axios.get(`/api/lists/${list.id}/markers`)
         .then(function (response) {
@@ -45,7 +49,6 @@ var renderMarker = function (marker) {
     $row.append($data3);
     $row.append($editButtons);
     $row.append($starButton);
-    $(".table-markerinfo").empty();
     var $markers = $(".table-markerinfo").append($row);
 
     $starButton.click(function () {
@@ -120,7 +123,7 @@ var getContribs = function (user_id) {
                 $row.append($starButton);
                 var $lists = $(".table-contrib-lists").append($row);
 
-                
+
                 // This will not work here
                 // $(".fav-button").on('click', function (event) {
                 //     event.preventDefault();
@@ -167,12 +170,37 @@ var getFavourites = function (user_id) {
 var setUpMapListener = function () {
     // Listen for click on map
     map.addListener('click', function (event) {
-        // Add marker
-        // console.log(event);
-        // alert(`Now we add the marker to the list!`);
-        // console.log(markerOnMap);
+        var props = {
+            list_id: selectedList,
+            lat: event.latLng.lat(),
+            lng: event.latLng.lng(),
+            title: "unnamed",
+            description: "no description"
+        }
+        // console.log(props);
+        addMarkertoDB(props);
+        addMarkerToMap(props);
     });
 }
+
+var addMarkertoDB = function (props) {
+    var params = new URLSearchParams();
+    params.append('list_id', props.list_id);
+    params.append('user_id', Window.userInfo);
+    params.append('lat', props.lat);
+    params.append('lng', props.lng);
+    params.append('title', props.title);
+    params.append('description', props.description);
+    axios.post('/api/markers', params)
+        .then(function (response) {
+            console.log(response);
+        })
+        .catch(function (error) {
+            console.log(error);
+        });
+}
+
+
 
 var showMarkerInfo = function (clickedMarker) {
     console.log(clickedMarker);
@@ -202,6 +230,10 @@ var addMarkerToMap = function (props) {
     });
     marker.addListener('click', function () {
         showMarkerInfo(this);
+    });
+    marker.addListener('rightclick', function () {
+        showMarkerInfo(this);
+        $('#myModal').modal('toggle');
     });
     markerOnMap.push(marker);
 }

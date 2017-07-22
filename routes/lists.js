@@ -31,7 +31,7 @@ module.exports = (knex) => {
     knex
       .select("*")
       .from("markers")
-      .where("markers.id", req.params.list_id)
+      .where("list_id", req.params.list_id)
       .then((results) => {
         res.json(results);
       });
