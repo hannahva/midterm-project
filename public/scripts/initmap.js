@@ -12,5 +12,6 @@ function initMap() {
   setUpMapListener();
   getLists();
   getFavourites(Window.userInfo);
+  getContribs(Window.userInfo);
   
 }

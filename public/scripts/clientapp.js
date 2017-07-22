@@ -48,7 +48,7 @@ var renderMarker = function (marker) {
     var $markers = $(".table-markerinfo").append($row);
 
     $starButton.click(function () {
-    $(this).toggleClass('star-button-active');
+        $(this).toggleClass('star-button-active');
     });
 }
 
@@ -83,6 +83,44 @@ var getLists = function () {
                     event.preventDefault();
                     getMarkersFromList(props);
                 })
+            }
+        })
+        .catch(function (error) {
+            console.log("Error:", error);
+        });
+}
+
+var getContribs = function (user_id) {
+    // Get lists
+    axios.get(`/api/lists/${user_id}/contributions`)
+        .then(function (response) {
+            // console.log(response);
+            var lists = response.data;
+            // console.log("response.data", response.data);
+            // Loop through lists
+            for (var i = 0; i < lists.length; i++) {
+                // Display list
+                displayList(lists[i]);
+            }
+            // Display list function
+            function displayList(list) {
+                // console.log('Props:', props);
+                var $data0 = $("<td>").text(list.name);
+                var $data1 = $("<td>").text(list.description);
+                var $editButtons = $(`<td><i id="garbage-can" class="fa fa-trash-o fa-2x" aria-hidden="true"></i>
+                        <i id="pencil-button" class="fa fa-pencil fa-2x" aria-hidden="true"></i><td>`);
+                var $starButton = $(`<td><i id="star-button" class="fa fa-star-o fa-2x" aria-hidden="true"></i></td>`);
+                var $row = $("<tr>");
+                $row.append($data0);
+                $row.append($data1);
+                $row.append($editButtons);
+                $row.append($starButton);
+                var $lists = $(".table-contrib-lists").append($row);
+
+                // $list.on('click', function (event) {
+                //     event.preventDefault();
+                //     console.log("Clicked on list", event);
+                // })
             }
         })
         .catch(function (error) {
