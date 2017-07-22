@@ -109,7 +109,9 @@ var getContribs = function (user_id) {
                 var $data1 = $("<td>").text(list.description);
                 var $editButtons = $(`<td><i id="garbage-can" class="fa fa-trash-o fa-2x" aria-hidden="true"></i>
                         <i id="pencil-button" class="fa fa-pencil fa-2x" aria-hidden="true"></i><td>`);
-                var $starButton = $(`<td><i id="star-button" class="fa fa-star-o fa-2x" aria-hidden="true"></i></td>`);
+                var $starButton = $(`<td><form action="/api/lists/${list.id}/favourites" method="POST">
+                    <button name="ToggleFavourite"><i class="fa fa-star-o fa-2x" aria-hidden="true"></i></button>
+                </form></td>`);
                 var $row = $("<tr>");
                 $row.append($data0);
                 $row.append($data1);
@@ -117,9 +119,11 @@ var getContribs = function (user_id) {
                 $row.append($starButton);
                 var $lists = $(".table-contrib-lists").append($row);
 
-                // $list.on('click', function (event) {
+                
+                // This will not work here
+                // $(".fav-button").on('click', function (event) {
                 //     event.preventDefault();
-                //     console.log("Clicked on list", event);
+                //     console.log("Clicked on favourite", event);
                 // })
             }
         })
