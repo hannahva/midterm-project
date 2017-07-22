@@ -88,6 +88,52 @@ module.exports = (knex) => {
     }
   });
 
+  // Toggle favourites
+  router.post("/:list_id/favourites", (req, res) => {
+    // perform validations here
+    console.log("list_id", req.params.list_id);
+    console.log("user.id", req.session.user.id);
+    var favs = {
+      list_id: req.params.list_id,
+      user_id: req.session.user.id
+    }
+    knex("favourites")
+      .where('user_id', req.session.user.id)
+      .andWhere('list_id', req.params.list_id)
+      .then(function (result, err) {
+        if (err) {
+          console.log(err);
+        } else {
+          if (result.length === 0) {
+            knex("favourites")
+              .insert(favs).then(function (result, err) {
+                if (err) {
+                  console.log(err);
+                } else {
+                  console.log(`Insert into favourite table successful`);
+                }
+              });
+          } else {
+            console.log("exists!");
+            // Delete it 
+            knex('favourites')
+              .where('user_id', req.session.user.id)
+              .andWhere('list_id', req.params.list_id)
+              .del()
+              .then(function (result, err) {
+                if (err) {
+                  console.log(err);
+                } else {
+                  console.log(`Deleted favourite`);
+                }
+              });
+          }
+        }
+      });
+
+    res.redirect('/');
+  });
+
   // Update list
   router.put("/:list_id", (req, res) => {
     // perform validation here
