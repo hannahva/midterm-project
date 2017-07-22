@@ -32,7 +32,7 @@ module.exports = (knex) => {
       res.redirect("/")
       return;
     }
-    res.render("./partials/_header")
+    res.render("index")
   });
 
   router.route("/").post((req, res) => {
@@ -43,11 +43,8 @@ module.exports = (knex) => {
       if (err){
         req.flash('errorsMessage', 'Email or password incorrect');
         res.redirect("/")
-        // console.error("session not set")
-        // res.status(403).send("Sorry, email or password incorrect");
       } else {
       req.session.user = user;
-      //once /lists route setup, do redirect to it
       res.redirect("/");
       }
     });

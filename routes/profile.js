@@ -6,8 +6,12 @@ const router  = express.Router();
 module.exports = (knex) => {
 
   router.get("/", (req, res) => {
-      res.render("profile")
-
+     if(!req.user){
+      res.redirect("/");
+      return;
+    } else {
+      res.render("profile");
+    }
   });
 
   return router;

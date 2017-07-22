@@ -13,9 +13,8 @@
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-right">
                 <div class="form-inline login">
-                  <% include ../_login %>
+                <% include ../_login %>
                 </div>
-
             </ul>
             <div class="profile-link">
                 <% if (user) { %>
@@ -27,13 +26,7 @@
                     </script>
                 <% } %>
             </div>
-            <div class="error-flash-message">
-              <% if (errorsMessage && errorsMessage.length) { %>
-                <% errorsMessage.forEach(error => { %>
-                  <p>Sorry! <%= error %></p>
-                <% }); %>
-              <% } %>
-            </div>
+
         </div>
     </div>
 </nav>
