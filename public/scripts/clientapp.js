@@ -34,9 +34,9 @@ var renderMarker = function (marker) {
     $data2 = $("<td>").text(marker.title);
     $data3 = $("<td>").text(marker.description);
     $data4 = $("<td>").text(marker.position);
-    var $editButtons = $(`<td><i class="fa fa-trash-o fa-2x" aria-hidden="true"></i>
-                        <i class="fa fa-pencil fa-2x" aria-hidden="true"></i><td>`);
-    var $starButton = $(`<td><i class="fa fa-star-o fa-2x" aria-hidden="true"></i></td>`);
+    var $editButtons = $(`<td><i id="garbage-can" class="fa fa-trash-o fa-2x" aria-hidden="true"></i>
+                        <i id="pencil-button" class="fa fa-pencil fa-2x" aria-hidden="true"></i><td>`);
+    var $starButton = $(`<td><i id="star-button" class="fa fa-star-o fa-2x" aria-hidden="true"></i></td>`);
     var $row = $("<tr>");
     $row.append($data0);
     $row.append($data1);
@@ -46,6 +46,10 @@ var renderMarker = function (marker) {
     $row.append($starButton);
     $(".table-markerinfo").empty();
     var $markers = $(".table-markerinfo").append($row);
+
+    $starButton.click(function () {
+        $(this).toggleClass('star-button-active');
+    });
 }
 
 // Deletes all markers from the map
@@ -86,6 +90,44 @@ var getLists = function () {
         });
 }
 
+var getContribs = function (user_id) {
+    // Get lists
+    axios.get(`/api/lists/${user_id}/contributions`)
+        .then(function (response) {
+            // console.log(response);
+            var lists = response.data;
+            // console.log("response.data", response.data);
+            // Loop through lists
+            for (var i = 0; i < lists.length; i++) {
+                // Display list
+                displayList(lists[i]);
+            }
+            // Display list function
+            function displayList(list) {
+                // console.log('Props:', props);
+                var $data0 = $("<td>").text(list.name);
+                var $data1 = $("<td>").text(list.description);
+                var $editButtons = $(`<td><i id="garbage-can" class="fa fa-trash-o fa-2x" aria-hidden="true"></i>
+                        <i id="pencil-button" class="fa fa-pencil fa-2x" aria-hidden="true"></i><td>`);
+                var $starButton = $(`<td><i id="star-button" class="fa fa-star-o fa-2x" aria-hidden="true"></i></td>`);
+                var $row = $("<tr>");
+                $row.append($data0);
+                $row.append($data1);
+                $row.append($editButtons);
+                $row.append($starButton);
+                var $lists = $(".table-contrib-lists").append($row);
+
+                // $list.on('click', function (event) {
+                //     event.preventDefault();
+                //     console.log("Clicked on list", event);
+                // })
+            }
+        })
+        .catch(function (error) {
+            console.log("Error:", error);
+        });
+}
+
 var getFavourites = function (user_id) {
     // Get lists
     axios.get(`/api/users/${user_id}/favourites`)
@@ -101,6 +143,7 @@ var getFavourites = function (user_id) {
             function displayList(props) {
                 // console.log('Props:', props);
                 var $row = $(`<a href="#"></a>`).text(props.name);
+                var $starButton = $(`<td><i id="star-button" class="fa fa-star-o fa-2x" aria-hidden="true"></i></td>`);
                 var $list = $("<li>");
                 $list.append($row);
                 var $lists = $(".list-favourites").append($list);
