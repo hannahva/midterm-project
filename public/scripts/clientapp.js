@@ -34,12 +34,16 @@ var renderMarker = function (marker) {
     $data2 = $("<td>").text(marker.title);
     $data3 = $("<td>").text(marker.description);
     $data4 = $("<td>").text(marker.position);
+    var $editButtons = $(`<td><i class="fa fa-trash-o fa-2x" aria-hidden="true"></i>
+                        <i class="fa fa-pencil fa-2x" aria-hidden="true"></i><td>`);
+    var $starButton = $(`<td><i class="fa fa-star-o fa-2x" aria-hidden="true"></i></td>`);
     var $row = $("<tr>");
     $row.append($data0);
     $row.append($data1);
     $row.append($data2);
     $row.append($data3);
-    $row.append($data4);
+    $row.append($editButtons);
+    $row.append($starButton);
     $(".table-markerinfo").empty();
     var $markers = $(".table-markerinfo").append($row);
 }
