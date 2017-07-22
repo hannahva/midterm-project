@@ -42,8 +42,8 @@ module.exports = (knex) => {
     knex
       .select('*')
       .from('contributions')
-      .leftJoin('users', 'contributions.user_id', 'users.id')
-      .where('list_id', req.params.list_id)
+      .innerJoin('lists', 'contributions.list_id', 'lists.id')
+      .where('user_id', req.session.user.id)
       .then((results) => {
         res.json(results);
       });

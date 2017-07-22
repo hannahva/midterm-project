@@ -1,4 +1,3 @@
-
 <div class="container-fluid">
     <div class="row">
         <div class="col-sm-2 col-md-2 sidebar">
@@ -54,19 +53,36 @@
                         <!-- Marker info goes here -->
                     </tbody>
                 </table>
-                <br>
-                <h1>Add new List</h1>
-                <form action="/api/lists" method="POST">
-                    <div class="form-group">
-                        <label for="list-name">List name</label>
-                        <input type="text" class="form-control" id="list-name" name="name">
-                    </div>
-                    <div class="form-group">
-                        <label for="list-description">Description</label>
-                        <input type="text" class="form-control" id="list-description" name="description">
-                    </div>
-                    <button type="submit" class="btn btn-primary">Add List</button>
-                </form>
+            </div>
+            <br>
+            <h1>Add new List</h1>
+            <form action="/api/lists" method="POST">
+                <div class="form-group">
+                    <label for="list-name">List name</label>
+                    <input type="text" class="form-control" id="list-name" name="name">
+                </div>
+                <div class="form-group">
+                    <label for="list-description">Description</label>
+                    <input type="text" class="form-control" id="list-description" name="description">
+                </div>
+                <button type="submit" class="btn btn-primary">Add List</button>
+            </form>
+            <br>
+            <h2 class="sub-header header-contribs">My Contribs</h2>
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Description</th>
+                            <th>Edit</th>
+                            <th>Favourite</th>
+                        </tr>
+                    </thead>
+                    <tbody class="table-contrib-lists">
+                        <!-- Marker info goes here -->
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>
