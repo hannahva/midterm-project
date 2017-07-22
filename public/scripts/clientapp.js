@@ -1,11 +1,18 @@
 var markers = [];
 var markerOnMap = [];
+// Render Marker Info Header
+var renderMarkerHeader = function (list) {
+    console.log("list", list.name);
+    $(".header-all-markers").empty();
+    $(".header-all-markers").append(list.name);
+}
 
-var getMarkersFromList = function (list_id) {
+var getMarkersFromList = function (list) {
 
     clearMarkers();
+    renderMarkerHeader(list);
 
-    axios.get(`/api/lists/${list_id}/markers`)
+    axios.get(`/api/lists/${list.id}/markers`)
         .then(function (response) {
             markers = response.data;
         })
@@ -21,6 +28,7 @@ var getMarkersFromList = function (list_id) {
 
 var renderMarker = function (marker) {
 
+    // Render Marker Info Table
     var $data0 = $("<td>").text(marker.id);
     $data1 = $("<td>").text(marker.user_id);
     $data2 = $("<td>").text(marker.title);
@@ -65,7 +73,7 @@ var getLists = function () {
 
                 $list.on('click', function (event) {
                     event.preventDefault();
-                    getMarkersFromList(props.id);
+                    getMarkersFromList(props);
                 })
             }
         })
@@ -116,6 +124,10 @@ var setUpMapListener = function () {
 
 var showMarkerInfo = function (clickedMarker) {
     console.log(clickedMarker);
+    // Render Selected Marker Header
+    $(".header-selected-marker").empty();
+    $(".header-selected-marker").append(clickedMarker.title);
+    // Render Selected Marker Info Table
     $(".table-selected-markerinfo").empty();
     $(".table-selected-markerinfo")
         .append(`<tr><td>${clickedMarker.id}</td><td>${clickedMarker.user_id}</td><td>${clickedMarker.title}</td><td>${clickedMarker.description}</td><td>${clickedMarker.position}</td></tr>`);
