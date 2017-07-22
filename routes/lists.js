@@ -49,32 +49,43 @@ module.exports = (knex) => {
       });
   });
 
-  // knex.select('*').from('users').leftJoin('accounts', 'users.id', 'accounts.user_id')
-
   // Create new list
   router.post("/", (req, res) => {
     // perform validations here
-    let list = [];
+    let list;
     console.log("req.body: ", req.body);
     console.log("user.id: ", req.session.user.id)
     if (true) {
-      list = [{
+      list = {
         name: req.body.name,
         description: req.body.description
-      }];
+      };
       // Insert list into lists, returns the id as a confirmation
+      var contrib;
       knex("lists")
         .insert(list, 'id').then(function (id, err) {
           if (err) {
             console.log(err);
           } else {
-            console.log(`Insert successful`);
-            res.send(`Insert successful\n`);
+            contrib = {
+              list_id: id[0], // ok this array was freaky
+              user_id: req.session.user.id
+            };
+            console.log("list: ", list);
+            console.log(`Insert to lists successful: id=${id}`);
+            console.log("contrib:", contrib);
+            knex("contributions")
+              .insert(contrib).then(function (result, err) {
+                if (err) {
+                  console.log(err);
+                } else {
+                  console.log(`Insert to contribution table successful`);
+                }
+              });
           }
         });
       res.redirect('/');
     }
-
   });
 
   // Update list
