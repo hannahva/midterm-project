@@ -9,8 +9,9 @@ var renderMarkerHeader = function (list) {
 
 var getMarkersFromList = function (list) {
 
-    clearMarkers();
     renderMarkerHeader(list);
+    clearMarkers();
+    
 
     axios.get(`/api/lists/${list.id}/markers`)
         .then(function (response) {
@@ -154,7 +155,7 @@ var getFavourites = function (user_id) {
 
                 $list.on('click', function (event) {
                     event.preventDefault();
-                    getMarkersFromList(props.id);
+                    getMarkersFromList(props);
                 })
             }
         })
