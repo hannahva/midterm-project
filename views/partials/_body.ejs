@@ -20,54 +20,7 @@
             <div class="row placeholders">
                 <div id="map" class="col-xs-12 col-sm-6"></div>
             </div>
-            <h2 class="sub-header header-selected-marker">Selected Marker</h2>
-            <div class="table-responsive">
-                <table class="table table-striped">
-                    <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>User</th>
-                            <th>Title</th>
-                            <th>Description</th>
-                            <th>Position</th>
-                        </tr>
-                    </thead>
-                    <tbody class="table-selected-markerinfo">
-                        <!-- Selected Marker info goes here -->
-                    </tbody>
-                </table>
-            </div>
-            <h2 class="sub-header header-all-markers">All Markers in List</h2>
-            <div class="table-responsive">
-                <table class="table table-striped">
-                    <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>User</th>
-                            <th>Title</th>
-                            <th>Description</th>
-                            <th>Edit</th>
-                            <th>Favourite</th>
-                        </tr>
-                    </thead>
-                    <tbody class="table-markerinfo">
-                        <!-- Marker info goes here -->
-                    </tbody>
-                </table>
-                <br>
-                <h1>Add new List</h1>
-                <form action="/api/lists" method="POST">
-                    <div class="form-group">
-                        <label for="list-name">List name</label>
-                        <input type="text" class="form-control" id="list-name" name="name">
-                    </div>
-                    <div class="form-group">
-                        <label for="list-description">Description</label>
-                        <input type="text" class="form-control" id="list-description" name="description">
-                    </div>
-                    <button type="submit" class="btn btn-primary">Add List</button>
-                </form>
-            </div>
+           <% include _markers %>
         </div>
     </div>
 </div>

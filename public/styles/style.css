@@ -126,6 +126,7 @@ body {
 
 /* LOGIN FORM */
 .form-inline .form-control {
+  font-size: 20px;
   width: 200px;
   height: 50px;
 }
@@ -158,10 +159,11 @@ body {
 }
 
 .form-group .form-control {
-  width: 100%;
+  font-size: 20px;
   height: 50px;
   margin-top: 5px;
   margin-bottom: 5px;
+  width: 100%;
 }
 
 .form-group .form-control::placeholder {

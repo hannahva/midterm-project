@@ -1,0 +1,38 @@
+<h2 class="sub-header header-selected-marker">Selected Marker</h2>
+<div class="table-responsive">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>User</th>
+                <th>Title</th>
+                <th>Description</th>
+                <th>Position</th>
+            </tr>
+        </thead>
+        <tbody class="table-selected-markerinfo">
+            <!-- Selected Marker info goes here -->
+        </tbody>
+    </table>
+</div>
+<h2 class="sub-header header-all-markers">All Markers in List</h2>
+<div class="table-responsive">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>User</th>
+                <th>Title</th>
+                <th>Description</th>
+                <th>Edit</th>
+                <th>Favourite</th>
+            </tr>
+        </thead>
+        <tbody class="table-markerinfo">
+            <!-- Marker info goes here -->
+        </tbody>
+    </table>
+    <br>
+    <!-- Add new list form -->
+    <% include _add-list.ejs %>
+</div>
