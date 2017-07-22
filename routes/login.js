@@ -28,7 +28,7 @@ module.exports = (knex) => {
 
 
   router.get("/", (req, res) => {
-    if(!!req.session.user_id){
+    if(!!req.session.user){
       res.redirect("/")
       return;
     }
