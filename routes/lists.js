@@ -37,8 +37,8 @@ module.exports = (knex) => {
       });
   });
 
-    // Get list contributions
-    router.get("/:list_id/contributions", (req, res) => {
+  // Get list contributions
+  router.get("/:list_id/contributions", (req, res) => {
     knex
       .select('*')
       .from('contributions')
@@ -55,23 +55,26 @@ module.exports = (knex) => {
   router.post("/", (req, res) => {
     // perform validations here
     let list = [];
-    console.log(req.body);
+    console.log("req.body: ", req.body);
+    console.log("user.id: ", req.session.user.id)
     if (true) {
       list = [{
         name: req.body.name,
         description: req.body.description
       }];
+      // Insert list into lists, returns the id as a confirmation
+      knex("lists")
+        .insert(list, 'id').then(function (id, err) {
+          if (err) {
+            console.log(err);
+          } else {
+            console.log(`Insert successful`);
+            res.send(`Insert successful\n`);
+          }
+        });
+      res.redirect('/');
     }
-    // Insert list into lists, returns the id as a confirmation
-    knex("lists")
-      .insert(list, 'id').then(function (id, err) {
-        if (err) {
-          console.log(err);
-        } else {
-          console.log(`Insert successful`);
-          res.send(`Insert successful\n`);
-        }
-      });
+
   });
 
   // Update list
