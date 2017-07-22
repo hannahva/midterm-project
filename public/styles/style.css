@@ -1,6 +1,46 @@
-/*
- * Base structure.
- */
+body {
+  background-color: #f9fbff;
+  font-family: 'Lato', sans-serif;
+  padding-top: 120px;
+}
+
+.sub-header {
+  padding-bottom: 10px;
+  border-bottom: 1px solid #eee;
+}
+
+.main {
+  padding: 20px;
+}
+
+p {
+  color: #4095DE;
+  font-size: 3em;
+  padding-top: 10px;
+}
+
+@media (min-width: 768px) {
+  .main {
+    padding-right: 40px;
+    padding-left: 40px;
+  }
+}
+
+.main .page-header {
+  margin-top: 0;
+}
+
+div.error-flash-message {
+  display: inline;
+  float: right;
+  margin-top: 1em;
+}
+
+#map {
+  height: 450px;
+  width: 100%;
+}
+
 #garbage-can:hover {
   color: red;
   cursor: pointer;
@@ -18,20 +58,6 @@
 
 .star-button-active {
   color: yellow;
-}
-
-/* Move down content because we have a fixed navbar that is 50px tall */
-body {
-  font-family: 'Lato', sans-serif;
-  padding-top: 120px;
-}
-
-/*
- * Global add-ons
- */
-.sub-header {
-  padding-bottom: 10px;
-  border-bottom: 1px solid #eee;
 }
 
 /*
@@ -59,10 +85,7 @@ body {
   /*padding-top: 10px;*/
 }
 
-/*
- * Sidebar
- */
-/* Hide for mobile, show later */
+/* Sidebar navigation */
 .sidebar {
   display: none;
 }
@@ -85,7 +108,6 @@ body {
   }
 }
 
-/* Sidebar navigation */
 .nav-sidebar {
   margin-right: -21px;
   /* 20px padding + 1px border */
@@ -118,34 +140,6 @@ body {
 .sidebar h1 {
   color: #4095DE;
   font-size: 2.5em;
-}
-
-/*
- * Main content
- */
-.main {
-  padding: 20px;
-}
-
-p {
-  color: #4095DE;
-  font-size: 3em;
-  padding-top: 10px;
-}
-
-p .hidden {
-  display: none;
-}
-
-@media (min-width: 768px) {
-  .main {
-    padding-right: 40px;
-    padding-left: 40px;
-  }
-}
-
-.main .page-header {
-  margin-top: 0;
 }
 
 /* LOGIN FORM */
@@ -219,15 +213,4 @@ div.profile-link {
 a.profile {
   color: #EFFAF8;
   font-size: 3em;
-}
-
-div.error-flash-message {
-  display: inline;
-  float: right;
-  margin-top: 1em;
-}
-
-#map {
-  height: 450px;
-  width: 100%;
 }
