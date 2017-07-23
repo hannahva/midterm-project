@@ -1,21 +1,29 @@
 var markers = [];
 var markerOnMap = [];
 var selectedList = 1;
+var isFavourite = false;
 
 // Render Marker Info Header
 var renderMarkerHeader = function (list) {
-    console.log("list", list.name);
+    console.log("list.name=", list.name);
     $(".header-all-markers").empty();
     $(".header-all-markers").append(list.name);
+    if (isFavourite) {
+        $(".header-all-markers").append('<i id="star-button" class="fa fa-star fa-1x" aria-hidden="true"></i>');
+    } else {
+        $(".header-all-markers").append('<i id="star-button" class="fa fa-star-o fa-1x" aria-hidden="true"></i>');
+    }
+
     $(".table-markerinfo").empty();
 }
 
 var getMarkersFromList = function (list) {
 
-    renderMarkerHeader(list);
     selectedList = list.id;
+    checkFavourite(Window.userInfo, selectedList);
+    console.log("isFavourite", isFavourite);
+    renderMarkerHeader(list);
     clearMarkers();
-
 
     axios.get(`/api/lists/${list.id}/markers`)
         .then(function (response) {
@@ -167,6 +175,25 @@ var getFavourites = function (user_id) {
         });
 }
 
+var checkFavourite = function (user_id, list_id) {
+    // Get lists
+    axios.get(`/api/users/${user_id}/favourites`)
+        .then(function (response) {
+            isFavourite = false;
+            var lists = response.data;
+            // Loop through lists
+            for (var i = 0; i < lists.length; i++) {
+                if (lists[i].id === list_id) {
+                    console.log("BANG!");
+                    isFavourite = true;
+                }
+            }
+        })
+        .catch(function (error) {
+            console.log("Error:", error);
+        });
+}
+
 var setUpMapListener = function () {
     // Listen for click on map
     map.addListener('click', function (event) {
@@ -232,9 +259,8 @@ var addMarkerToMap = function (props) {
         showMarkerInfo(this);
     });
     marker.addListener('rightclick', function () {
-        console.log("Marker Info:",this);
+        console.log("Marker Info:", this);
         showMarkerInfo(this);
-
         $('#myModal').modal('toggle');
     });
     markerOnMap.push(marker);
