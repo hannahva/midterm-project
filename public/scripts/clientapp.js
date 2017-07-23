@@ -45,12 +45,9 @@ var renderMarker = function (marker) {
   var $data2 = $("<td>").text(marker.title);
   $data3 = $("<td>").text(marker.description);
   $data4 = $("<td>").text(marker.position);
-  var $editButtons = $(`<td><i id="garbage-can" class="fa fa-trash-o fa-2x" aria-hidden="true"></i>
-                        <i id="pencil-button" class="fa fa-pencil fa-2x" aria-hidden="true"></i><td>`);
   var $row = $("<tr>");
   $row.append($data2);
   $row.append($data3);
-  $row.append($editButtons);
   var $markers = $(".table-markerinfo").append($row);
 
   //click event to show card icon for marker when clicked from row
@@ -116,23 +113,15 @@ var getContribs = function (user_id) {
         // console.log('Props:', props);
         var $data0 = $("<td>").text(list.name);
         var $data1 = $("<td>").text(list.description);
-        var $editButtons = $(`<td><i id="garbage-can" class="fa fa-trash-o fa-2x" aria-hidden="true"></i>
-                        <i id="pencil-button" class="fa fa-pencil fa-2x" aria-hidden="true"></i><td>`);
         var $row = $("<tr>");
         $row.append($data0);
         $row.append($data1);
-        $row.append($editButtons);
         var $lists = $(".table-contrib-lists").append($row);
 
 //click on row and show list markers on map
         $row.on('click', function (event) {
           getMarkersFromList(list);
         })
-
-      //WORK IN PROGRESS
-      // $editButton.click(function () {
-      // $("location-edit-marker").scrollTop();
-      // });
 
       }
     })
@@ -251,6 +240,12 @@ var showMarkerInfo = function (clickedMarker) {
 
 
   $('#sidebar-card').show();
+
+      // click on pencil icon, go to edit page, edit current marker
+      $('#pencil-button').click(function () {
+        console.log("i was clicked");
+        window.location.href=`/api/markers/${clickedMarker.id}/edit`;
+      });
 }
 
 // Add Marker Function
