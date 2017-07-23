@@ -34,21 +34,15 @@ var getMarkersFromList = function (list) {
 var renderMarker = function (marker) {
 
     // Render Marker Info Table
-    var $data0 = $("<td>").text(marker.id);
-    $data1 = $("<td>").text(marker.user_id);
     $data2 = $("<td>").text(marker.title);
     $data3 = $("<td>").text(marker.description);
     $data4 = $("<td>").text(marker.position);
     var $editButtons = $(`<td><i id="garbage-can" class="fa fa-trash-o fa-2x" aria-hidden="true"></i>
                         <i id="pencil-button" class="fa fa-pencil fa-2x" aria-hidden="true"></i><td>`);
-    var $starButton = $(`<td><i id="star-button" class="fa fa-star-o fa-2x" aria-hidden="true"></i></td>`);
     var $row = $("<tr>");
-    $row.append($data0);
-    $row.append($data1);
     $row.append($data2);
     $row.append($data3);
     $row.append($editButtons);
-    $row.append($starButton);
     var $markers = $(".table-markerinfo").append($row);
 
     $starButton.click(function () {
