@@ -8,12 +8,23 @@ var renderMarkerHeader = function (list) {
   console.log("list.name=", list.name);
   $(".header-all-markers").empty();
   $(".header-all-markers").append(list.name);
-  if (isFavourite) {
-    $(".header-all-markers").append('<i id="star-button" class="fa fa-star fa-1x" aria-hidden="true"></i>');
-  } else {
-    $(".header-all-markers").append('<i id="star-button" class="fa fa-star-o fa-1x" aria-hidden="true"></i>');
-  }
+  renderFavouriteIcon();
   $(".table-markerinfo").empty();
+}
+
+var renderFavouriteIcon = function () {
+  if (isFavourite) {
+    $(".header-all-markers").append('<span onclick="myStarClick()"<i id="star-button" class="fa fa-star fa-1x" aria-hidden="true"></i></span>');
+  } else {
+    $(".header-all-markers").append('<span onclick="myStarClick()"<i id="star-button" class="fa fa-star-o fa-1x" aria-hidden="true"></i></span>');
+  }
+}
+
+var myStarClick = function () {
+  axios.get(`/api/lists/${selectedList}/favourites`)
+    .then(function (response) {
+      console.log("Toggled Favourite");
+    });
 }
 
 var getMarkersFromList = function (list) {
@@ -36,7 +47,27 @@ var getMarkersFromList = function (list) {
         addMarkerToMap(markers[i]);
       }
     });
+}
 
+var checkFavourite = function (user_id, list_id) {
+  // Get lists
+  axios.get(`/api/users/${user_id}/favourites`)
+    .then(function (response) {
+      isFavourite = false;
+      // renderFavouriteIcon();
+      var lists = response.data;
+      // Loop through lists
+      for (var i = 0; i < lists.length; i++) {
+        if (lists[i].id === list_id) {
+          console.log("BANG!");
+          isFavourite = true;
+          // renderFavouriteIcon();
+        }
+      }
+    })
+    .catch(function (error) {
+      console.log("Error:", error);
+    });
 }
 
 var renderMarker = function (marker) {
@@ -52,8 +83,8 @@ var renderMarker = function (marker) {
 
   //click event to show card icon for marker when clicked from row
   $row.click(function () {
-      $('#sidebar-card').show();
-      showMarkerInfo(marker);
+    $('#sidebar-card').show();
+    showMarkerInfo(marker);
   });
 }
 
@@ -87,6 +118,7 @@ var getLists = function () {
         $list.on('click', function (event) {
           event.preventDefault();
           getMarkersFromList(props);
+          // renderFavouriteIcon();
           $('.hide-table-until-click').show();
         })
       }
@@ -118,7 +150,7 @@ var getContribs = function (user_id) {
         $row.append($data1);
         var $lists = $(".table-contrib-lists").append($row);
 
-//click on row and show list markers on map
+        //click on row and show list markers on map
         $row.on('click', function (event) {
           getMarkersFromList(list);
         })
@@ -161,25 +193,6 @@ var getFavourites = function (user_id) {
     });
 }
 
-var checkFavourite = function (user_id, list_id) {
-  // Get lists
-  axios.get(`/api/users/${user_id}/favourites`)
-    .then(function (response) {
-      isFavourite = false;
-      var lists = response.data;
-      // Loop through lists
-      for (var i = 0; i < lists.length; i++) {
-        if (lists[i].id === list_id) {
-          console.log("BANG!");
-          isFavourite = true;
-        }
-      }
-    })
-    .catch(function (error) {
-      console.log("Error:", error);
-    });
-}
-
 var setUpMapListener = function () {
   // Listen for click on map
   map.addListener('click', function (event) {
@@ -215,9 +228,9 @@ var addMarkertoDB = function (props) {
 
 
 function imgError(image) {
-    image.onerror = "";
-    image.src = "/images/markers/globe-picture.png";
-    return true;
+  image.onerror = "";
+  image.src = "/images/markers/globe-picture.png";
+  return true;
 }
 
 // Add clicked marker info to info card, show card once clicked
