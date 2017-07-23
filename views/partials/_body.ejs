@@ -35,7 +35,7 @@
 
         <!-- Modal content-->
         <div class="modal-content">
-          <form method="post" action="/api/markers/:marker_id?_method=PUT">
+          <form method="post" action="/api/markers/"+marker.id+"?_method=PUT">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
                 <h4 class="modal-title">Edit this marker</h4>
@@ -68,11 +68,11 @@
               </div>
             </div>
             <div class="modal-footer">
-                <input id="update-marker" type="submit" onclick="updateMarkerInfo()" class="btn btn-default" value="make changes">
+                <input id="update-marker" type="submit" class="btn btn-default" value="make changes">
             </form>
-            <form method="post" action="/api/markers/:marker_id?_method=DELETE">
+<!--             <form method="post" action="/api/markers/" + marker.id + "?_method=DELETE">
               <input id="delete-marker" type="submit" onclick="" class="btn btn-default" value="delete marker">
-            </form>
+            </form> -->
 
             </div>
         </div>
