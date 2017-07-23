@@ -90,6 +90,7 @@ module.exports = (knex) => {
       })
     }
     getMarker(req.params.marker_id, function(results){
+      console.log(results[0])
       return res.render("markers/edit", results[0]);
     })
   })
