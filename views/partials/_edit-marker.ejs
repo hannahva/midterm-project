@@ -1,6 +1,6 @@
 <% if (user) { %>
   <h1 class="location-edit-marker">Edit Marker</h1>
-  <form action="/api/markers/2?_method=PUT" method="POST">
+  <form id="<%= id %>" action="/api/markers/<%= id %>?_method=PUT" method="POST">
     <div class="form-group">
       <label for="marker-name">List name</label>
       <input type="text" class="form-control" id="marker-title" name="title" placeholder="title">

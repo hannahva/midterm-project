@@ -4,10 +4,7 @@
     <% include ../partials/_head %>
   </head>
   <body>
-    <h1><%= id %></h1>
-
-
-   <% include ../partials/_edit-marker %>
+   <%- include('../partials/_edit-marker', { id: id }); %>
   </body>
 
 </html>
