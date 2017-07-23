@@ -86,8 +86,8 @@ var renderMarker = function (marker) {
 
   //click event to show card icon for marker when clicked from row
   $row.click(function () {
-      $('#sidebar-card').show();
-      showMarkerInfo(marker);
+    $('#sidebar-card').show();
+    showMarkerInfo(marker);
   });
 }
 
@@ -155,20 +155,17 @@ var getContribs = function (user_id) {
         $row.append($data1);
         $row.append($editButtons);
         var $lists = $(".table-contrib-lists").append($row);
-<<<<<<< HEAD
-=======
 
-//click on row and show list markers on map
+        //click on row and show list markers on map
         $row.on('click', function (event) {
           getMarkersFromList(list);
         })
 
-      //WORK IN PROGRESS
-      // $editButton.click(function () {
-      // $("location-edit-marker").scrollTop();
-      // });
+        //WORK IN PROGRESS
+        // $editButton.click(function () {
+        // $("location-edit-marker").scrollTop();
+        // });
 
->>>>>>> 5c9b0dcabf9883b6ca78796dfeefb89f20df4d3d
       }
     })
     .catch(function (error) {
@@ -242,9 +239,9 @@ var addMarkertoDB = function (props) {
 
 
 function imgError(image) {
-    image.onerror = "";
-    image.src = "/images/markers/globe-picture.png";
-    return true;
+  image.onerror = "";
+  image.src = "/images/markers/globe-picture.png";
+  return true;
 }
 
 // Add clicked marker info to info card, show card once clicked

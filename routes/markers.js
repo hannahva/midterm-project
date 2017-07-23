@@ -59,7 +59,7 @@ module.exports = (knex) => {
   // Update marker
   router.put("/:marker_id", (req, res) => {
     // perform validation here
-    if (req.params.list_id > 0) {
+    if (req.params.marker_id > 0) {
       let marker = {};
       console.log(req.body);
       if (true) {
@@ -81,7 +81,7 @@ module.exports = (knex) => {
             console.log(err);
           } else {
             console.log(`Update successful`);
-            // res.send(`Update successful\n`);
+            res.redirect("/");
           }
         });
     }
