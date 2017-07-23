@@ -283,16 +283,6 @@ var addMarkerToMap = function (props) {
   markerOnMap.push(marker);
 }
 
-// var updateMarkerInfo = function (clickedMarker) {
-//   $("#update-marker").click(function(){
-//     var $title = $("#marker-name").val();
-//     var $description = $("#marker-description").val();
-//     var $picture = $("#url-input").val();
-
-//     console.log($title, $description, $picture);
-
-//   })
-// }
 
 var setUpMaps = function () {
 

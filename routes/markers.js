@@ -81,6 +81,19 @@ module.exports = (knex) => {
       });
   });
 
+  router.get("/:marker_id/edit", (req, res) => {
+    var getMarker = function (markerId, callback){
+       knex("markers")
+      .where("id", markerId)
+      .then(function(results) {
+        callback(results);
+      })
+    }
+    getMarker(req.params.marker_id, function(results){
+      return res.render("markers/edit", results[0]);
+    })
+  })
+
   // Delete marker
   router.delete("/:marker_id", (req, res) => {
     knex("markers")
