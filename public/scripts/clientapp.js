@@ -224,7 +224,7 @@ var showMarkerInfo = function (clickedMarker) {
   // Render Selected Marker Header
   $(".header-selected-marker").empty();
   $(".header-selected-marker").append(clickedMarker.title);
-  // Render Selected Marker Info Table
+  // Render Selected Marker Info into Card
   $(".marker-description").empty();
   $(".marker-description")
     .append(clickedMarker.description);
@@ -237,7 +237,7 @@ var showMarkerInfo = function (clickedMarker) {
   // Render picture
   $(".insert-picture").empty();
   $(".insert-picture")
-    .append(`<img class="card-img-top marker-default-img" src="${clickedMarker.picture}" alt="marker image">`);
+    .append(`<img class="card-img-top marker-default-img" src="${clickedMarker.picture}" onerror="if (this.src != '${clickedMarker.picture}') this.src ="/images/markers/globe-picture.png">`);
 
   $('#sidebar-card').show();
 }
