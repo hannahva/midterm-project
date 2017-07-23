@@ -128,6 +128,12 @@ var getContribs = function (user_id) {
         $row.append($starButton);
         var $lists = $(".table-contrib-lists").append($row);
 
+//click on row and show list markers on map
+        $row.on('click', function (event) {
+          event.preventDefault();
+          getMarkersFromList(list);
+        })
+
       //WORK IN PROGRESS
       // $editButton.click(function () {
       // $("location-edit-marker").scrollTop();
