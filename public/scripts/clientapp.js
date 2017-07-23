@@ -241,9 +241,6 @@ var showMarkerInfo = function (clickedMarker) {
   $(".marker-description").empty();
   $(".marker-description")
     .append(clickedMarker.description);
-  $(".marker-position").empty();
-  $(".marker-position")
-    .append(`${clickedMarker.position}`);
   $(".marker-timestamp").empty();
   $(".marker-timestamp")
     .append($daysAgoTime);
