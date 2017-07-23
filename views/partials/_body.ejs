@@ -12,19 +12,21 @@
             </ul>
         </div>
 
-            <% include ../_register %>
+        <% include ../_register %>
 
-        <div class="col-sm-7 col-sm-offset-2 col-md-8 col-md-offset-2 main" >
-            <!-- <h1 class="page-header">WikiMaps</h1> -->
-            <div class="row placeholders">
-                <div id="map" class="col-xs-12 col-sm-6"></div>
+            <div class="col-sm-7 col-sm-offset-2 col-md-8 col-md-offset-2 main">
+                <!-- <h1 class="page-header">WikiMaps</h1> -->
+                <div class="row placeholders">
+                    <div id="map" class="col-xs-12 col-sm-6"></div>
+                </div>
+
+                <% include _markers %>
+
+                    <br>
+                    <% include _add-list %>
+                    <br>
+                    <% include _edit-marker %>
             </div>
-
-            <% include _markers %>
-
-                <br>
-                    <% include _add-list.ejs %>
-        </div>
     </div>
 </div>
 
@@ -48,4 +50,3 @@
 
     </div>
 </div>
-
