@@ -53,10 +53,11 @@ var renderMarker = function (marker) {
   $row.append($editButtons);
   var $markers = $(".table-markerinfo").append($row);
 
-  //click event to change button color to yellow
-  // $starButton.click(function () {
-  //     $(this).toggleClass('star-button-active');
-  // });
+  //click event to show card icon for marker when clicked from row
+  $row.click(function () {
+      $('#sidebar-card').show();
+      showMarkerInfo(marker);
+  });
 }
 
 // Deletes all markers from the map
