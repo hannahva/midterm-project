@@ -234,14 +234,13 @@ var showMarkerInfo = function (clickedMarker) {
   $(".marker-timestamp").empty();
   $(".marker-timestamp")
     .append($daysAgoTime);
+  // Render picture
   $(".insert-picture").empty();
   $(".insert-picture")
     .append(`<img class="card-img-top marker-default-img" src="${clickedMarker.picture}" alt="marker image">`);
 
   $('#sidebar-card').show();
 }
-
-{/* <div class="card selected-markerinfo" id="sidebar-card" style="width: 20rem;"> */}
 
 // Add Marker Function
 var addMarkerToMap = function (props) {
