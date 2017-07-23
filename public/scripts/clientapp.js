@@ -8,11 +8,7 @@ var renderMarkerHeader = function (list) {
   console.log("list.name=", list.name);
   $(".header-all-markers").empty();
   $(".header-all-markers").append(list.name);
-  if (isFavourite) {
-    $(".header-all-markers").append('<i id="star-button" class="fa fa-star fa-1x" aria-hidden="true"></i>');
-  } else {
-    $(".header-all-markers").append('<i id="star-button" class="fa fa-star-o fa-1x" aria-hidden="true"></i>');
-  }
+  $(".header-all-markers").append(`<span><a href="/api/lists/${list.id}/edit"><i id="star-button" class="fa fa-pencil fa-1x" aria-hidden="true"></i></a></span>`);
   $(".table-markerinfo").empty();
 }
 
@@ -36,7 +32,25 @@ var getMarkersFromList = function (list) {
         addMarkerToMap(markers[i]);
       }
     });
+}
 
+var checkFavourite = function (user_id, list_id) {
+  // Get lists
+  axios.get(`/api/users/${user_id}/favourites`)
+    .then(function (response) {
+      isFavourite = false;
+      var lists = response.data;
+      // Loop through lists
+      for (var i = 0; i < lists.length; i++) {
+        if (lists[i].id === list_id) {
+          console.log("BANG!");
+          isFavourite = true;
+        }
+      }
+    })
+    .catch(function (error) {
+      console.log("Error:", error);
+    });
 }
 
 var renderMarker = function (marker) {
@@ -45,18 +59,15 @@ var renderMarker = function (marker) {
   var $data2 = $("<td>").text(marker.title);
   $data3 = $("<td>").text(marker.description);
   $data4 = $("<td>").text(marker.position);
-  var $editButtons = $(`<td><i id="garbage-can" class="fa fa-trash-o fa-2x" aria-hidden="true"></i>
-                        <i id="pencil-button" class="fa fa-pencil fa-2x" aria-hidden="true"></i><td>`);
   var $row = $("<tr>");
   $row.append($data2);
   $row.append($data3);
-  $row.append($editButtons);
   var $markers = $(".table-markerinfo").append($row);
 
   //click event to show card icon for marker when clicked from row
   $row.click(function () {
-      $('#sidebar-card').show();
-      showMarkerInfo(marker);
+    $('#sidebar-card').show();
+    showMarkerInfo(marker);
   });
 }
 
@@ -90,6 +101,7 @@ var getLists = function () {
         $list.on('click', function (event) {
           event.preventDefault();
           getMarkersFromList(props);
+          // renderFavouriteIcon();
           $('.hide-table-until-click').show();
         })
       }
@@ -116,23 +128,15 @@ var getContribs = function (user_id) {
         // console.log('Props:', props);
         var $data0 = $("<td>").text(list.name);
         var $data1 = $("<td>").text(list.description);
-        var $editButtons = $(`<td><i id="garbage-can" class="fa fa-trash-o fa-2x" aria-hidden="true"></i>
-                        <i id="pencil-button" class="fa fa-pencil fa-2x" aria-hidden="true"></i><td>`);
         var $row = $("<tr>");
         $row.append($data0);
         $row.append($data1);
-        $row.append($editButtons);
         var $lists = $(".table-contrib-lists").append($row);
 
-//click on row and show list markers on map
+        //click on row and show list markers on map
         $row.on('click', function (event) {
           getMarkersFromList(list);
         })
-
-      //WORK IN PROGRESS
-      // $editButton.click(function () {
-      // $("location-edit-marker").scrollTop();
-      // });
 
       }
     })
@@ -156,7 +160,7 @@ var getFavourites = function (user_id) {
       function displayList(props) {
         // console.log('Props:', props);
         var $row = $(`<a href="#"></a>`).text(props.name);
-        var $starButton = $(`<td><i id="star-button" class="fa fa-star-o fa-2x" aria-hidden="true"></i></td>`);
+        var $starButton = $(`<td><i id="star-button" class="fa fa-pencil fa-2x" aria-hidden="true"></i></td>`);
         var $list = $("<li>");
         $list.append($row);
         var $lists = $(".list-favourites").append($list);
@@ -165,25 +169,6 @@ var getFavourites = function (user_id) {
           event.preventDefault();
           getMarkersFromList(props);
         })
-      }
-    })
-    .catch(function (error) {
-      console.log("Error:", error);
-    });
-}
-
-var checkFavourite = function (user_id, list_id) {
-  // Get lists
-  axios.get(`/api/users/${user_id}/favourites`)
-    .then(function (response) {
-      isFavourite = false;
-      var lists = response.data;
-      // Loop through lists
-      for (var i = 0; i < lists.length; i++) {
-        if (lists[i].id === list_id) {
-          console.log("BANG!");
-          isFavourite = true;
-        }
       }
     })
     .catch(function (error) {
@@ -226,9 +211,9 @@ var addMarkertoDB = function (props) {
 
 
 function imgError(image) {
-    image.onerror = "";
-    image.src = "/images/markers/globe-picture.png";
-    return true;
+  image.onerror = "";
+  image.src = "/images/markers/globe-picture.png";
+  return true;
 }
 
 // Add clicked marker info to info card, show card once clicked
@@ -251,6 +236,12 @@ var showMarkerInfo = function (clickedMarker) {
 
 
   $('#sidebar-card').show();
+
+      // click on pencil icon, go to edit page, edit current marker
+      $('#pencil-button').click(function () {
+        console.log("i was clicked");
+        window.location.href=`/api/markers/${clickedMarker.id}/edit`;
+      });
 }
 
 // Add Marker Function
