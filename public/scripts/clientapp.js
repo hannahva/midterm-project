@@ -200,10 +200,8 @@ var addMarkertoDB = function (props) {
         });
 }
 
-
-
+// Add clicked marker info to info card
 var showMarkerInfo = function (clickedMarker) {
-    console.log(clickedMarker);
     var $daysAgoTime = moment(clickedMarker.created_at).fromNow();
     // Render Selected Marker Header
     $(".header-selected-marker").empty();
@@ -218,7 +216,8 @@ var showMarkerInfo = function (clickedMarker) {
     $(".marker-timestamp").empty();
     $(".marker-timestamp")
         .append($daysAgoTime);
-        console.log($daysAgoTime);
+
+        $('#sidebar-card').show();
 }
 
 // Add Marker Function

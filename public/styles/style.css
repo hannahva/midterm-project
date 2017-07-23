@@ -215,9 +215,11 @@ label[for="register"] {
 #sidebar-card {
   float: right;
   border: 2px solid #4095DE;
+  border-radius: 5px;
   margin-top: 20px;
   margin-right: 30px;
   background-color: white;
+  display: none;
 }
 
 .marker-default-img {
@@ -225,6 +227,19 @@ label[for="register"] {
   width: 170px;
   vertical-align: middle;
   margin: 10px;
+}
+
+.marker-all-info {
+  /*vertical-align: middle;*/
+  text-align: center;
+}
+
+.header-selected-marker {
+  vertical-align: middle;
+}
+
+.card-footer {
+  padding: 5px;
 }
 
 div.profile-link {

@@ -1,13 +1,12 @@
 <% if (user) { %>
 
-
+<div class="col-sm-3 col-md-2 form-group register">
   <div class="card selected-markerinfo" id="sidebar-card" style="width: 20rem;">
   <img class="card-img-top marker-default-img" src="/images/markers/globe-picture.png"
   alt="Card image cap">
-  <div class="card-block">
-    <h4 class="card-title header-selected-marker">Card title</h4>
-    <p class="card-text marker-description">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-
+  <div class="card-block marker-all-info">
+    <h4 class="card-title header-selected-marker">Pick A Spot!</h4>
+    <p class="card-text marker-description"></p>
   </div>
   <div class="card-footer">
       <small class="text-muted marker-position"></small>
@@ -16,7 +15,7 @@
       <small class="text-muted marker-timestamp"></small>
     </div>
 </div>
-
+</div>
 <% } else if (!user) { %>
 <div class="col-sm-3 col-md-2 form-group register">
   <form id="register" action="/api/register" method="POST">
