@@ -118,19 +118,14 @@ var getContribs = function (user_id) {
         var $data1 = $("<td>").text(list.description);
         var $editButtons = $(`<td><i id="garbage-can" class="fa fa-trash-o fa-2x" aria-hidden="true"></i>
                         <i id="pencil-button" class="fa fa-pencil fa-2x" aria-hidden="true"></i><td>`);
-        var $starButton = $(`<td><form action="/api/lists/${list.id}/favourites" method="POST">
-                    <button name="ToggleFavourite"><i class="fa fa-star-o fa-2x" aria-hidden="true"></i></button>
-                </form></td>`);
         var $row = $("<tr>");
         $row.append($data0);
         $row.append($data1);
         $row.append($editButtons);
-        $row.append($starButton);
         var $lists = $(".table-contrib-lists").append($row);
 
 //click on row and show list markers on map
         $row.on('click', function (event) {
-          event.preventDefault();
           getMarkersFromList(list);
         })
 
