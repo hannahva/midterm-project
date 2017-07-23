@@ -204,13 +204,21 @@ var addMarkertoDB = function (props) {
 
 var showMarkerInfo = function (clickedMarker) {
     console.log(clickedMarker);
+    var $daysAgoTime = moment(clickedMarker.created_at).fromNow();
     // Render Selected Marker Header
     $(".header-selected-marker").empty();
     $(".header-selected-marker").append(clickedMarker.title);
     // Render Selected Marker Info Table
-    $(".table-selected-markerinfo").empty();
-    $(".table-selected-markerinfo")
-        .append(`<tr><td>${clickedMarker.id}</td><td>${clickedMarker.user_id}</td><td>${clickedMarker.title}</td><td>${clickedMarker.description}</td><td>${clickedMarker.position}</td></tr>`);
+    $(".marker-description").empty();
+    $(".marker-description")
+        .append(clickedMarker.description);
+    $(".marker-position").empty();
+    $(".marker-position")
+        .append(`${clickedMarker.position}`);
+    $(".marker-timestamp").empty();
+    $(".marker-timestamp")
+        .append($daysAgoTime);
+        console.log($daysAgoTime);
 }
 
 // Add Marker Function
@@ -222,6 +230,7 @@ var addMarkerToMap = function (props) {
     marker = new google.maps.Marker({
         id: props.id,
         user_id: props.user_id,
+        created_at: props.created_at,
         title: props.title,
         position: props.coords,
         map: map,
