@@ -81,6 +81,9 @@ module.exports = (knex) => {
       });
   });
 
+  router.get("/:marker_id/edit", (req, res) => {
+    res.send("you made it!")
+  })
   // Delete marker
   router.delete("/:marker_id", (req, res) => {
     knex("markers")
