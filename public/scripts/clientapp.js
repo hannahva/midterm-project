@@ -34,7 +34,7 @@ var getMarkersFromList = function (list) {
 var renderMarker = function (marker) {
 
     // Render Marker Info Table
-    $data2 = $("<td>").text(marker.title);
+    var $data2 = $("<td>").text(marker.title);
     $data3 = $("<td>").text(marker.description);
     $data4 = $("<td>").text(marker.position);
     var $editButtons = $(`<td><i id="garbage-can" class="fa fa-trash-o fa-2x" aria-hidden="true"></i>
@@ -45,9 +45,10 @@ var renderMarker = function (marker) {
     $row.append($editButtons);
     var $markers = $(".table-markerinfo").append($row);
 
-    $starButton.click(function () {
-        $(this).toggleClass('star-button-active');
-    });
+//click event to change button color to yellow
+    // $starButton.click(function () {
+    //     $(this).toggleClass('star-button-active');
+    // });
 }
 
 // Deletes all markers from the map
