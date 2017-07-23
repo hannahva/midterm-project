@@ -54,6 +54,10 @@ body {
   color: yellow;
 }
 
+.hide-table-until-click {
+  display: none;
+}
+
 /*
  * Top navigation
  * Hide default border to remove 1px line.
@@ -210,6 +214,36 @@ label[for="register"] {
 .error-message-register {
   color: #4095DE;
   font-size: 1.5em;
+}
+
+#sidebar-card {
+  float: right;
+  border: 2px solid #4095DE;
+  border-radius: 5px;
+  margin-top: 20px;
+  margin-right: 30px;
+  background-color: white;
+  display: none;
+}
+
+.marker-default-img {
+  height: 170px;
+  width: 170px;
+  vertical-align: middle;
+  margin: 10px;
+}
+
+.marker-all-info {
+  /*vertical-align: middle;*/
+  text-align: center;
+}
+
+.header-selected-marker {
+  vertical-align: middle;
+}
+
+.card-footer {
+  padding: 5px;
 }
 
 div.profile-link {
