@@ -206,6 +206,11 @@ body {
   background-color: #a3ccff;
 }
 
+.btn.btn-danger {
+  cursor: pointer;
+  font-size: 2em;
+}
+
 label[for="register"] {
   color: #4095DE;
   font-size: 3em;

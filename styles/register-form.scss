@@ -23,6 +23,13 @@
 .btn.btn-primary:hover {
   background-color: #a3ccff;
 }
+.btn.btn-danger {
+  // background-color: #4095DE;
+  // border: 0;
+  // color: #EFFAF8;
+  cursor: pointer;
+  font-size: 2em;
+}
 
 label[for="register"] {
   color:#4095DE;

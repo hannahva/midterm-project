@@ -13,5 +13,5 @@ function initMap() {
   getLists();
   getFavourites(Window.userInfo);
   getContribs(Window.userInfo);
-  
+
 }
