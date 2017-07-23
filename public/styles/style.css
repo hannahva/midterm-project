@@ -58,6 +58,10 @@ body {
   display: none;
 }
 
+tr {
+  cursor: pointer;
+}
+
 /*
  * Top navigation
  * Hide default border to remove 1px line.
