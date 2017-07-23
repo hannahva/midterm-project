@@ -53,10 +53,11 @@ var renderMarker = function (marker) {
   $row.append($editButtons);
   var $markers = $(".table-markerinfo").append($row);
 
-  //click event to change button color to yellow
-  // $starButton.click(function () {
-  //     $(this).toggleClass('star-button-active');
-  // });
+  //click event to show card icon for marker when clicked from row
+  $row.click(function () {
+      $('#sidebar-card').show();
+      showMarkerInfo(marker);
+  });
 }
 
 // Deletes all markers from the map
@@ -117,15 +118,21 @@ var getContribs = function (user_id) {
         var $data1 = $("<td>").text(list.description);
         var $editButtons = $(`<td><i id="garbage-can" class="fa fa-trash-o fa-2x" aria-hidden="true"></i>
                         <i id="pencil-button" class="fa fa-pencil fa-2x" aria-hidden="true"></i><td>`);
-        var $starButton = $(`<td><form action="/api/lists/${list.id}/favourites" method="POST">
-                    <button name="ToggleFavourite"><i class="fa fa-star-o fa-2x" aria-hidden="true"></i></button>
-                </form></td>`);
         var $row = $("<tr>");
         $row.append($data0);
         $row.append($data1);
         $row.append($editButtons);
-        $row.append($starButton);
         var $lists = $(".table-contrib-lists").append($row);
+
+//click on row and show list markers on map
+        $row.on('click', function (event) {
+          getMarkersFromList(list);
+        })
+
+      //WORK IN PROGRESS
+      // $editButton.click(function () {
+      // $("location-edit-marker").scrollTop();
+      // });
 
       }
     })
@@ -217,26 +224,31 @@ var addMarkertoDB = function (props) {
     });
 }
 
+
+function imgError(image) {
+    image.onerror = "";
+    image.src = "/images/markers/globe-picture.png";
+    return true;
+}
+
 // Add clicked marker info to info card, show card once clicked
 var showMarkerInfo = function (clickedMarker) {
   var $daysAgoTime = moment(clickedMarker.created_at).fromNow();
   // Render Selected Marker Header
   $(".header-selected-marker").empty();
   $(".header-selected-marker").append(clickedMarker.title);
-  // Render Selected Marker Info Table
+  // Render Selected Marker Info into Card
   $(".marker-description").empty();
   $(".marker-description")
     .append(clickedMarker.description);
-  $(".marker-position").empty();
-  $(".marker-position")
-    .append(`${clickedMarker.position}`);
   $(".marker-timestamp").empty();
   $(".marker-timestamp")
     .append($daysAgoTime);
   // Render picture
   $(".insert-picture").empty();
   $(".insert-picture")
-    .append(`<img class="card-img-top marker-default-img" src="${clickedMarker.picture}" alt="marker image">`);
+    .append(`<img class="card-img-top marker-default-img" src="${clickedMarker.picture}" onerror="imgError(this);">`);
+
 
   $('#sidebar-card').show();
 }
