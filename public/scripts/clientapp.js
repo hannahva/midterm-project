@@ -217,6 +217,13 @@ var addMarkertoDB = function (props) {
     });
 }
 
+
+function imgError(image) {
+    image.onerror = "";
+    image.src = "/images/markers/globe-picture.png";
+    return true;
+}
+
 // Add clicked marker info to info card, show card once clicked
 var showMarkerInfo = function (clickedMarker) {
   var $daysAgoTime = moment(clickedMarker.created_at).fromNow();
@@ -236,7 +243,8 @@ var showMarkerInfo = function (clickedMarker) {
   // Render picture
   $(".insert-picture").empty();
   $(".insert-picture")
-    .append(`<img class="card-img-top marker-default-img" src="${clickedMarker.picture}" onerror="if (this.src != '${clickedMarker.picture}') this.src ="/images/markers/globe-picture.png">`);
+    .append(`<img class="card-img-top marker-default-img" src="${clickedMarker.picture}" onerror="imgError(this);">`);
+
 
   $('#sidebar-card').show();
 }
