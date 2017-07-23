@@ -47,7 +47,7 @@ module.exports = (knex) => {
           console.log(err);
         } else {
           console.log(`Insert successful`);
-          res.send(`Insert successful\n`);
+          // res.send(`Insert successful\n`);
         }
       });
   });
@@ -76,7 +76,7 @@ module.exports = (knex) => {
           console.log(err);
         } else {
           console.log(`Update successful`);
-          res.send(`Update successful\n`);
+          // res.send(`Update successful\n`);
         }
       });
   });
@@ -88,7 +88,7 @@ module.exports = (knex) => {
       .del()
       .then((results) => {
         console.log(`Delete Successful`);
-        res.send(`Delete Successful\n`);
+        // res.send(`Delete Successful\n`);
       });
   });
 

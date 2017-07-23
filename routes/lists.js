@@ -17,28 +17,33 @@ module.exports = (knex) => {
 
   // Get lists by id
   router.get("/:list_id", (req, res) => {
-    knex
-      .select("*")
-      .from("lists")
-      .where("id", req.params.list_id)
-      .then((results) => {
-        res.json(results);
-      });
+    if (req.params.list_id > 0) {
+      knex
+        .select("*")
+        .from("lists")
+        .where("id", req.params.list_id)
+        .then((results) => {
+          res.json(results);
+        });
+    }
   });
 
   // Get all markers by list_id
   router.get("/:list_id/markers", (req, res) => {
-    knex
-      .select("*")
-      .from("markers")
-      .where("list_id", req.params.list_id)
-      .then((results) => {
-        res.json(results);
-      });
+    if (req.params.list_id > 0) {
+      knex
+        .select("*")
+        .from("markers")
+        .where("list_id", req.params.list_id)
+        .then((results) => {
+          res.json(results);
+        });
+    }
   });
 
   // Get list contributions
   router.get("/:list_id/contributions", (req, res) => {
+    if (req.params.list_id > 0){
     knex
       .select('*')
       .from('contributions')
@@ -47,6 +52,7 @@ module.exports = (knex) => {
       .then((results) => {
         res.json(results);
       });
+    }
   });
 
   // Create new list
@@ -91,6 +97,7 @@ module.exports = (knex) => {
   // Toggle favourites
   router.post("/:list_id/favourites", (req, res) => {
     // perform validations here
+    if (req.params.list_id > 0){
     console.log("list_id", req.params.list_id);
     console.log("user.id", req.session.user.id);
     var favs = {
@@ -132,11 +139,13 @@ module.exports = (knex) => {
       });
 
     res.redirect('/');
+    }
   });
 
   // Update list
   router.put("/:list_id", (req, res) => {
     // perform validation here
+    if (req.params.list_id > 0){
     let list = {};
     // console.log(req.body);
     if (true) {
@@ -153,9 +162,10 @@ module.exports = (knex) => {
           console.log(err);
         } else {
           console.log(`Update successful`);
-          res.send(`Update successful\n`);
+          // res.send(`Update successful\n`);
         }
       });
+    }
   });
 
   // Delete list

@@ -13,7 +13,6 @@ var renderMarkerHeader = function (list) {
   } else {
     $(".header-all-markers").append('<i id="star-button" class="fa fa-star-o fa-1x" aria-hidden="true"></i>');
   }
-
   $(".table-markerinfo").empty();
 }
 
