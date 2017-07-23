@@ -93,6 +93,7 @@ module.exports = (knex) => {
       return res.render("markers/edit", results[0]);
     })
   })
+
   // Delete marker
   router.delete("/:marker_id", (req, res) => {
     knex("markers")
