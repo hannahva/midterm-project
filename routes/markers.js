@@ -82,7 +82,7 @@ module.exports = (knex) => {
   });
 
   router.get("/:marker_id/edit", (req, res) => {
-    res.send("you made it!")
+    res.render("markers/edit")
   })
   // Delete marker
   router.delete("/:marker_id", (req, res) => {
