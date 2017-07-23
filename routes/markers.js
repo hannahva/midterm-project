@@ -76,6 +76,7 @@ module.exports = (knex) => {
           console.log(err);
         } else {
           console.log(`Update successful`);
+          res.redirect("/")
           // res.send(`Update successful\n`);
         }
       });
