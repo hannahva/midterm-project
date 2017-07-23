@@ -33,3 +33,18 @@ label[for="register"] {
   color: #4095DE;
   font-size: 1.5em;
 }
+
+#sidebar-card {
+  float: right;
+  border: 2px solid #4095DE;
+  margin-top: 20px;
+  margin-right: 30px;
+  background-color: white;
+}
+
+.marker-default-img {
+  height: 170px;
+  width: 170px;
+  vertical-align: middle;
+  margin: 10px;
+}
