@@ -61,6 +61,7 @@ module.exports = (knex) => {
       marker = {
         list_id: req.body.list_id,
         user_id: req.body.user_id,
+        picture: req.body.picture,
         title: req.body.title,
         description: req.body.description,
         lat: req.body.lat,
