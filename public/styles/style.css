@@ -54,6 +54,10 @@ body {
   color: yellow;
 }
 
+.hide-table-until-click {
+  display: none;
+}
+
 /*
  * Top navigation
  * Hide default border to remove 1px line.

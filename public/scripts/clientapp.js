@@ -86,6 +86,7 @@ var getLists = function () {
                 $list.on('click', function (event) {
                     event.preventDefault();
                     getMarkersFromList(props);
+                    $('.hide-table-until-click').show();
                 })
             }
         })
@@ -200,7 +201,7 @@ var addMarkertoDB = function (props) {
         });
 }
 
-// Add clicked marker info to info card
+// Add clicked marker info to info card, show card once clicked
 var showMarkerInfo = function (clickedMarker) {
     var $daysAgoTime = moment(clickedMarker.created_at).fromNow();
     // Render Selected Marker Header
