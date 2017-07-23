@@ -8,23 +8,8 @@ var renderMarkerHeader = function (list) {
   console.log("list.name=", list.name);
   $(".header-all-markers").empty();
   $(".header-all-markers").append(list.name);
-  renderFavouriteIcon();
+  $(".header-all-markers").append(`<span><a href="/api/lists/${list.id}/edit"><i id="star-button" class="fa fa-pencil fa-1x" aria-hidden="true"></i></a></span>`);
   $(".table-markerinfo").empty();
-}
-
-var renderFavouriteIcon = function () {
-  if (isFavourite) {
-    $(".header-all-markers").append('<span onclick="myStarClick()"<i id="star-button" class="fa fa-star fa-1x" aria-hidden="true"></i></span>');
-  } else {
-    $(".header-all-markers").append('<span onclick="myStarClick()"<i id="star-button" class="fa fa-star-o fa-1x" aria-hidden="true"></i></span>');
-  }
-}
-
-var myStarClick = function () {
-  axios.get(`/api/lists/${selectedList}/favourites`)
-    .then(function (response) {
-      console.log("Toggled Favourite");
-    });
 }
 
 var getMarkersFromList = function (list) {
@@ -54,14 +39,12 @@ var checkFavourite = function (user_id, list_id) {
   axios.get(`/api/users/${user_id}/favourites`)
     .then(function (response) {
       isFavourite = false;
-      // renderFavouriteIcon();
       var lists = response.data;
       // Loop through lists
       for (var i = 0; i < lists.length; i++) {
         if (lists[i].id === list_id) {
           console.log("BANG!");
           isFavourite = true;
-          // renderFavouriteIcon();
         }
       }
     })
@@ -177,7 +160,7 @@ var getFavourites = function (user_id) {
       function displayList(props) {
         // console.log('Props:', props);
         var $row = $(`<a href="#"></a>`).text(props.name);
-        var $starButton = $(`<td><i id="star-button" class="fa fa-star-o fa-2x" aria-hidden="true"></i></td>`);
+        var $starButton = $(`<td><i id="star-button" class="fa fa-pencil fa-2x" aria-hidden="true"></i></td>`);
         var $list = $("<li>");
         $list.append($row);
         var $lists = $(".list-favourites").append($list);

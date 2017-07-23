@@ -252,6 +252,10 @@ label[for="register"] {
   vertical-align: middle;
 }
 
+#star-button {
+  padding-left: 10px;
+}
+
 .card-footer {
   padding: 5px;
 }
