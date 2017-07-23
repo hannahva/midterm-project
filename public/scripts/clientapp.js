@@ -127,6 +127,11 @@ var getContribs = function (user_id) {
         $row.append($starButton);
         var $lists = $(".table-contrib-lists").append($row);
 
+      //WORK IN PROGRESS
+      // $editButton.click(function () {
+      // $("location-edit-marker").scrollTop();
+      // });
+
       }
     })
     .catch(function (error) {
