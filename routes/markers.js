@@ -76,11 +76,12 @@ module.exports = (knex) => {
           console.log(err);
         } else {
           console.log(`Update successful`);
+          res.redirect("/");
           // res.send(`Update successful\n`);
         }
       });
   });
-
+  // get form to perform update
   router.get("/:marker_id/edit", (req, res) => {
     var getMarker = function (markerId, callback){
        knex("markers")
@@ -91,7 +92,7 @@ module.exports = (knex) => {
     }
     getMarker(req.params.marker_id, function(results){
       console.log(results[0])
-      return res.render("markers/edit", results[0]);
+      return res.render("markers/edit-marker", results[0]);
     })
   })
 
@@ -102,6 +103,7 @@ module.exports = (knex) => {
       .del()
       .then((results) => {
         console.log(`Delete Successful`);
+        res.redirect("/")
         // res.send(`Delete Successful\n`);
       });
   });

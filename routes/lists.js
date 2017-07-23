@@ -122,7 +122,7 @@ module.exports = (knex) => {
               });
           } else {
             console.log("exists!");
-            // Delete it 
+            // Delete it
             knex('favourites')
               .where('user_id', req.session.user.id)
               .andWhere('list_id', req.params.list_id)
@@ -167,6 +167,20 @@ module.exports = (knex) => {
       });
     }
   });
+  // get form to perform update
+  router.get("/:list_id/edit", (req, res) => {
+    var getMarker = function (listId, callback){
+       knex("lists")
+      .where("id", listId)
+      .then(function(results) {
+        callback(results);
+      })
+    }
+    getMarker(req.params.list_id, function(results){
+      console.log(results[0])
+      return res.render("partials/edit-list", results[0]);
+    })
+  })
 
   // Delete list
   router.delete("/:list_id", (req, res) => {
