@@ -13,7 +13,7 @@ body {
   padding: 20px;
 }
 
-p {
+.sign-up-message {
   color: #4095DE;
   font-size: 3em;
   padding-top: 10px;
@@ -28,12 +28,6 @@ p {
 
 .main .page-header {
   margin-top: 0;
-}
-
-div.error-flash-message {
-  display: inline;
-  float: right;
-  margin-top: 1em;
 }
 
 #map {
@@ -83,6 +77,14 @@ div.error-flash-message {
   line-height: 40px;
   height: 100px;
   /*padding-top: 10px;*/
+}
+
+.error-flash-message {
+  color: white;
+  font-size: 1.5em;
+  display: inline;
+  float: right;
+  margin-top: 30px;
 }
 
 /* Sidebar navigation */
@@ -203,6 +205,11 @@ div.error-flash-message {
 label[for="register"] {
   color: #4095DE;
   font-size: 3em;
+}
+
+.error-message-register {
+  color: #4095DE;
+  font-size: 1.5em;
 }
 
 div.profile-link {

@@ -232,7 +232,9 @@ var addMarkerToMap = function (props) {
         showMarkerInfo(this);
     });
     marker.addListener('rightclick', function () {
+        console.log("Marker Info:",this);
         showMarkerInfo(this);
+
         $('#myModal').modal('toggle');
     });
     markerOnMap.push(marker);
