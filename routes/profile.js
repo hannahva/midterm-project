@@ -6,7 +6,7 @@ const router  = express.Router();
 module.exports = (knex) => {
 
   router.get("/", (req, res) => {
-     if(!req.session.user){
+    if(!req.session.user){
       res.redirect("/");
       return;
     } else {
@@ -15,4 +15,4 @@ module.exports = (knex) => {
   });
 
   return router;
-}
+};

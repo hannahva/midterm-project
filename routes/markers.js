@@ -92,12 +92,12 @@ module.exports = (knex) => {
         .where("id", markerId)
         .then(function (results) {
           callback(results);
-        })
-    }
+        });
+    };
     getMarker(req.params.marker_id, function(results){
       return res.render("markers/edit-marker", results[0]);
-    })
-  })
+    });
+  });
 
   // Delete marker
   router.delete("/:marker_id", (req, res) => {
@@ -116,5 +116,5 @@ module.exports = (knex) => {
 
   return router;
 
-}
+};
 

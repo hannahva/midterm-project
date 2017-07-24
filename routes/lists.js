@@ -44,14 +44,14 @@ module.exports = (knex) => {
   // Get list contributions
   router.get("/:list_id/contributions", (req, res) => {
     if (req.params.list_id > 0){
-    knex
-      .select('*')
-      .from('contributions')
-      .innerJoin('lists', 'contributions.list_id', 'lists.id')
-      .where('user_id', req.session.user.id)
-      .then((results) => {
-        res.json(results);
-      });
+      knex
+        .select('*')
+        .from('contributions')
+        .innerJoin('lists', 'contributions.list_id', 'lists.id')
+        .where('user_id', req.session.user.id)
+        .then((results) => {
+          res.json(results);
+        });
     }
   });
 
@@ -60,7 +60,7 @@ module.exports = (knex) => {
     // perform validations here
     let list;
     console.log("req.body: ", req.body);
-    console.log("user.id: ", req.session.user.id)
+    console.log("user.id: ", req.session.user.id);
     if (true) {
       list = {
         name: req.body.name,
@@ -94,51 +94,51 @@ module.exports = (knex) => {
     }
   });
 
-    // Toggle favourites (post version)
+  // Toggle favourites (post version)
   router.post("/:list_id/favourites", (req, res) => {
     // perform validations here
     if (req.params.list_id > 0){
-    console.log("list_id", req.params.list_id);
-    console.log("user.id", req.session.user.id);
-    var favs = {
-      list_id: req.params.list_id,
-      user_id: req.session.user.id
-    }
-    knex("favourites")
-      .where('user_id', req.session.user.id)
-      .andWhere('list_id', req.params.list_id)
-      .then(function (result, err) {
-        if (err) {
-          console.log(err);
-        } else {
-          if (result.length === 0) {
-            knex("favourites")
-              .insert(favs).then(function (result, err) {
-                if (err) {
-                  console.log(err);
-                } else {
-                  console.log(`Insert into favourite table successful`);
-                }
-              });
+      console.log("list_id", req.params.list_id);
+      console.log("user.id", req.session.user.id);
+      var favs = {
+        list_id: req.params.list_id,
+        user_id: req.session.user.id
+      };
+      knex("favourites")
+        .where('user_id', req.session.user.id)
+        .andWhere('list_id', req.params.list_id)
+        .then(function (result, err) {
+          if (err) {
+            console.log(err);
           } else {
-            console.log("exists!");
-            // Delete it
-            knex('favourites')
-              .where('user_id', req.session.user.id)
-              .andWhere('list_id', req.params.list_id)
-              .del()
-              .then(function (result, err) {
-                if (err) {
-                  console.log(err);
-                } else {
-                  console.log(`Deleted favourite`);
-                }
-              });
+            if (result.length === 0) {
+              knex("favourites")
+                .insert(favs).then(function (result, err) {
+                  if (err) {
+                    console.log(err);
+                  } else {
+                    console.log(`Insert into favourite table successful`);
+                  }
+                });
+            } else {
+              console.log("exists!");
+              // Delete it
+              knex('favourites')
+                .where('user_id', req.session.user.id)
+                .andWhere('list_id', req.params.list_id)
+                .del()
+                .then(function (result, err) {
+                  if (err) {
+                    console.log(err);
+                  } else {
+                    console.log(`Deleted favourite`);
+                  }
+                });
+            }
           }
-        }
-      });
+        });
 
-    res.redirect('/');
+      res.redirect('/');
     }
   });
 
@@ -146,47 +146,47 @@ module.exports = (knex) => {
   router.get("/:list_id/favourites", (req, res) => {
     // perform validations here
     if (req.params.list_id > 0){
-    console.log("list_id", req.params.list_id);
-    console.log("user.id", req.session.user.id);
-    var favs = {
-      list_id: req.params.list_id,
-      user_id: req.session.user.id
-    }
-    knex("favourites")
-      .where('user_id', req.session.user.id)
-      .andWhere('list_id', req.params.list_id)
-      .then(function (result, err) {
-        if (err) {
-          console.log(err);
-        } else {
-          if (result.length === 0) {
-            knex("favourites")
-              .insert(favs).then(function (result, err) {
-                if (err) {
-                  console.log(err);
-                } else {
-                  console.log(`Insert into favourite table successful`);
-                }
-              });
+      console.log("list_id", req.params.list_id);
+      console.log("user.id", req.session.user.id);
+      var favs = {
+        list_id: req.params.list_id,
+        user_id: req.session.user.id
+      };
+      knex("favourites")
+        .where('user_id', req.session.user.id)
+        .andWhere('list_id', req.params.list_id)
+        .then(function (result, err) {
+          if (err) {
+            console.log(err);
           } else {
-            console.log("exists!");
-            // Delete it
-            knex('favourites')
-              .where('user_id', req.session.user.id)
-              .andWhere('list_id', req.params.list_id)
-              .del()
-              .then(function (result, err) {
-                if (err) {
-                  console.log(err);
-                } else {
-                  console.log(`Deleted favourite`);
-                }
-              });
+            if (result.length === 0) {
+              knex("favourites")
+                .insert(favs).then(function (result, err) {
+                  if (err) {
+                    console.log(err);
+                  } else {
+                    console.log(`Insert into favourite table successful`);
+                  }
+                });
+            } else {
+              console.log("exists!");
+              // Delete it
+              knex('favourites')
+                .where('user_id', req.session.user.id)
+                .andWhere('list_id', req.params.list_id)
+                .del()
+                .then(function (result, err) {
+                  if (err) {
+                    console.log(err);
+                  } else {
+                    console.log(`Deleted favourite`);
+                  }
+                });
+            }
           }
-        }
-      });
+        });
 
-    res.redirect('/');
+      res.redirect('/');
     }
   });
 
@@ -194,42 +194,42 @@ module.exports = (knex) => {
   router.post("/:list_id/update", (req, res) => {
     // perform validation here
     if (req.params.list_id > 0){
-    let list = {};
-    // console.log(req.body);
-    if (true) {
-      list = {
-        name: req.body.name,
-        description: req.body.description
-      };
-    }
-    knex("lists")
-      .where("id", req.params.list_id)
-      .update(list, "id")
-      .then(function (id, err) {
-        if (err) {
-          console.log(err);
-        } else {
-          console.log(`Update successful`);
-          res.redirect("/");
+      let list = {};
+      // console.log(req.body);
+      if (true) {
+        list = {
+          name: req.body.name,
+          description: req.body.description
+        };
+      }
+      knex("lists")
+        .where("id", req.params.list_id)
+        .update(list, "id")
+        .then(function (id, err) {
+          if (err) {
+            console.log(err);
+          } else {
+            console.log(`Update successful`);
+            res.redirect("/");
           // res.send(`Update successful\n`);
-        }
-      });
+          }
+        });
     }
   });
   // get form to perform update
   router.get("/:list_id/edit", (req, res) => {
     var getMarker = function (listId, callback){
-       knex("lists")
-      .where("id", listId)
-      .then(function(results) {
-        callback(results);
-      })
-    }
+      knex("lists")
+        .where("id", listId)
+        .then(function(results) {
+          callback(results);
+        });
+    };
     getMarker(req.params.list_id, function(results){
-      console.log(results[0])
+      console.log(results[0]);
       return res.render("partials/edit-list", results[0]);
-    })
-  })
+    });
+  });
 
   // Delete list
   router.get("/:list_id/delete", (req, res) => {
@@ -242,9 +242,9 @@ module.exports = (knex) => {
           .del()
           .then((results) => {
             console.log(`Delete successful`);
-            res.redirect("/")
+            res.redirect("/");
           });
-      })
+      });
   });
 
   return router;

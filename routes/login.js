@@ -23,16 +23,16 @@ module.exports = (knex) => {
         } else {
           callback(new Error('email or password not found'));
         }
-    });
+      });
   };
 
 
   router.get("/", (req, res) => {
-    if(!!req.session.user){
-      res.redirect("/")
+    if(req.session.user){
+      res.redirect("/");
       return;
     }
-    res.render("index")
+    res.render("index");
   });
 
   router.route("/").post((req, res) => {
@@ -42,16 +42,16 @@ module.exports = (knex) => {
     checkUserCredentials(req.body.email, req.body.password, (err, user) => {
       if (err){
         req.flash('errorsMessage', 'Email or password incorrect');
-        res.redirect("/")
+        res.redirect("/");
       } else {
-      req.session.user = user;
-      res.redirect("/");
+        req.session.user = user;
+        res.redirect("/");
       }
     });
 
   });
 
   return router;
-}
+};
 
 

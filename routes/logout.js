@@ -7,8 +7,8 @@ module.exports = (knex) => {
 
   router.route("/").post((req, res) => {
     req.session = null;
-    res.redirect("/")
+    res.redirect("/");
   });
 
   return router;
-}
+};

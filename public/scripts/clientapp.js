@@ -10,7 +10,7 @@ var renderMarkerHeader = function (list) {
   $(".header-all-markers").append(list.name);
   $(".header-all-markers").append(`<span><a href="/api/lists/${list.id}/edit"><i id="star-button" class="fa fa-pencil fa-1x" aria-hidden="true"></i></a></span>`);
   $(".table-markerinfo").empty();
-}
+};
 
 var getMarkersFromList = function (list) {
 
@@ -32,7 +32,7 @@ var getMarkersFromList = function (list) {
         addMarkerToMap(markers[i]);
       }
     });
-}
+};
 
 var checkFavourite = function (user_id, list_id) {
   // Get lists
@@ -51,7 +51,7 @@ var checkFavourite = function (user_id, list_id) {
     .catch(function (error) {
       console.log("Error:", error);
     });
-}
+};
 
 var renderMarker = function (marker) {
 
@@ -69,7 +69,7 @@ var renderMarker = function (marker) {
     $('#sidebar-card').show();
     showMarkerInfo(marker);
   });
-}
+};
 
 // Deletes all markers from the map
 var clearMarkers = function () {
@@ -77,7 +77,7 @@ var clearMarkers = function () {
     markerOnMap[i].setMap(null);
   }
   markerOnMap = [];
-}
+};
 
 var getLists = function () {
   // Get lists
@@ -102,13 +102,13 @@ var getLists = function () {
           event.preventDefault();
           getMarkersFromList(props);
           $('.hide-table-until-click').show();
-        })
+        });
       }
     })
     .catch(function (error) {
       console.log("Error:", error);
     });
-}
+};
 
 var getContribs = function (user_id) {
   // Get lists
@@ -135,14 +135,14 @@ var getContribs = function (user_id) {
         //click on row and show list markers on map
         $row.on('click', function (event) {
           getMarkersFromList(list);
-        })
+        });
 
       }
     })
     .catch(function (error) {
       console.log("Error:", error);
     });
-}
+};
 
 var getFavourites = function (user_id) {
   // Get lists
@@ -168,13 +168,13 @@ var getFavourites = function (user_id) {
           event.preventDefault();
           getMarkersFromList(props);
           $('.hide-table-until-click').show();
-        })
+        });
       }
     })
     .catch(function (error) {
       console.log("Error:", error);
     });
-}
+};
 
 var setUpMapListener = function () {
   // Listen for click on map
@@ -185,12 +185,12 @@ var setUpMapListener = function () {
       lng: event.latLng.lng(),
       title: "unnamed",
       description: "no description"
-    }
+    };
     // console.log(props);
     addMarkertoDB(props);
     addMarkerToMap(props);
   });
-}
+};
 
 var addMarkertoDB = function (props) {
   var params = new URLSearchParams();
@@ -207,7 +207,7 @@ var addMarkertoDB = function (props) {
     .catch(function (error) {
       console.log(error);
     });
-}
+};
 
 
 function imgError(image) {
@@ -238,12 +238,12 @@ var showMarkerInfo = function (clickedMarker) {
   $('#sidebar-card').show();
 
 
-      // click on pencil icon, go to edit page, edit current marker
-      $('#pencil-button').click(function () {
-        console.log("i was clicked");
-        window.location.href=`/api/markers/${clickedMarker.id}/edit`;
-      });
-}
+  // click on pencil icon, go to edit page, edit current marker
+  $('#pencil-button').click(function () {
+    console.log("i was clicked");
+    window.location.href = `/api/markers/${clickedMarker.id}/edit`;
+  });
+};
 
 // Add Marker Function
 var addMarkerToMap = function (props) {
@@ -266,7 +266,7 @@ var addMarkerToMap = function (props) {
     showMarkerInfo(this);
   });
   markerOnMap.push(marker);
-}
+};
 
 
 var setUpMaps = function () {
@@ -286,4 +286,4 @@ var setUpMaps = function () {
     .catch(function (error) {
       console.log(error);
     });
-}
+};

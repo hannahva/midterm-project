@@ -44,7 +44,7 @@ module.exports = (knex) => {
           req.flash('errors', 'Invalid Information');
           res.redirect("/");
 
-       } else {
+        } else {
           createUser(req.body.email, req.body.password)
             .then(function (user) {
               req.session.user = user[0];
