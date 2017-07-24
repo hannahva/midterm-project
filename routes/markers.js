@@ -97,7 +97,6 @@ module.exports = (knex) => {
       })
     }
     getMarker(req.params.marker_id, function(results){
-      console.log(results[0])
       return res.render("markers/edit-marker", results[0]);
     })
   })
@@ -110,6 +109,7 @@ module.exports = (knex) => {
         .del()
         .then((results) => {
           console.log(`Delete Successful`);
+          res.redirect("/");
           // res.send(`Delete Successful\n`);
         });
     }
