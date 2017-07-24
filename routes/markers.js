@@ -30,30 +30,28 @@ module.exports = (knex) => {
   // Create new marker
   router.post("/", (req, res) => {
     // perform validations here
-    if (req.params.list_id > 0) {
-      let marker = [];
-      console.log(req.body);
-      if (true) {
-        marker = [{
-          list_id: req.body.list_id,
-          user_id: req.body.user_id,
-          title: req.body.title,
-          description: req.body.description,
-          lat: req.body.lat,
-          lng: req.body.lng
-        }];
-      }
-      // Insert marker into markers, returns the id as a confirmation
-      knex("markers")
-        .insert(marker, "id").then(function (id, err) {
-          if (err) {
-            console.log(err);
-          } else {
-            console.log(`Insert successful`);
-            // res.send(`Insert successful\n`);
-          }
-        });
+    let marker = [];
+    console.log(req.body);
+    if (true) {
+      marker = [{
+        list_id: req.body.list_id,
+        user_id: req.body.user_id,
+        title: req.body.title,
+        description: req.body.description,
+        lat: req.body.lat,
+        lng: req.body.lng
+      }];
     }
+    // Insert marker into markers, returns the id as a confirmation
+    knex("markers")
+      .insert(marker, "id").then(function (id, err) {
+        if (err) {
+          console.log(err);
+        } else {
+          console.log(`Insert successful`);
+          res.send(`Insert successful\n`);
+        }
+      });
   });
 
   // Update marker
@@ -89,12 +87,12 @@ module.exports = (knex) => {
   });
   // get form to perform update
   router.get("/:marker_id/edit", (req, res) => {
-    var getMarker = function (markerId, callback){
-       knex("markers")
-      .where("id", markerId)
-      .then(function(results) {
-        callback(results);
-      })
+    var getMarker = function (markerId, callback) {
+      knex("markers")
+        .where("id", markerId)
+        .then(function (results) {
+          callback(results);
+        })
     }
     getMarker(req.params.marker_id, function(results){
       return res.render("markers/edit-marker", results[0]);
