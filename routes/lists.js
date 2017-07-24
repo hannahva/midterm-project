@@ -191,7 +191,7 @@ module.exports = (knex) => {
   });
 
   // Update list
-  router.put("/:list_id", (req, res) => {
+  router.post("/:list_id/update", (req, res) => {
     // perform validation here
     if (req.params.list_id > 0){
     let list = {};
@@ -232,7 +232,7 @@ module.exports = (knex) => {
   })
 
   // Delete list
-  router.delete("/:list_id", (req, res) => {
+  router.get("/:list_id/delete", (req, res) => {
     knex("contributions")
       .where("list_id", req.params.list_id)
       .del()
@@ -245,9 +245,6 @@ module.exports = (knex) => {
             res.redirect("/")
           });
       })
-
-
-
   });
 
   return router;
