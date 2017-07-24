@@ -33,7 +33,7 @@ const profileRoutes = require("./routes/profile");
 //         The :status token will be colored red for server error codes, yellow for client error codes, cyan for redirection codes, and uncolored for all other codes.
 app.use(morgan('dev'));
 
-// override with POST having ?_method=DELETE
+// override PUT and DELETE with POST + ?_method=DELETE
 app.use(methodOverride('_method'));
 
 app.use(cookieSession({
@@ -47,6 +47,7 @@ app.use(knexLogger(knex));
 
 app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({ extended: true }));
+
 app.use("/styles", sass({
   src: __dirname + "/styles",
   dest: __dirname + "/public/styles",
