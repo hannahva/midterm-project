@@ -14,12 +14,15 @@ The application is built using Node.js, Express, ES6 for server side & ES5 for t
 
 1. Create the `.env` by using `.env.example` as a reference: `cp .env.example .env`
 2. Update the .env file with your correct local information
-3. Install dependencies: `npm i`
-4. Fix to binaries for sass: `npm rebuild node-sass`
-5. Run migrations: `npm run knex migrate:latest`
+3. Run the following commands in psql to create database
+  `CREATE ROLE <role> WITH LOGIN password <password>`
+  `CREATE DATABASE <database> OWNER <role>`
+4. Install dependencies: `npm i`
+5. Fix to binaries for sass: `npm rebuild node-sass`
+6. Run migrations: `npm run knex migrate:latest`
 7. Run the seed: `npm run knex seed:run`
-9. Run the server: `npm run local`
-10. Visit http://localhost:8080/
+8. Run the server: `npm run local`
+9. Visit http://localhost:8080/
 
 ## Dependencies
 
