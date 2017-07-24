@@ -15,8 +15,6 @@ var renderMarkerHeader = function (list) {
 var getMarkersFromList = function (list) {
 
   selectedList = list.id;
-  // checkFavourite(Window.userInfo, selectedList);
-  // console.log("isFavourite", isFavourite);
   renderMarkerHeader(list);
   clearMarkers();
 
@@ -26,8 +24,6 @@ var getMarkersFromList = function (list) {
     })
     .then(function () {
       for (var i = 0; i < markers.length; i++) {
-        // Add markers
-        // console.log(markers[i]);
         renderMarker(markers[i]);
         addMarkerToMap(markers[i]);
       }
@@ -83,7 +79,6 @@ var getLists = function () {
   // Get lists
   axios.get('/api/lists')
     .then(function (response) {
-      // console.log(response);
       var lists = response.data;
       // Loop through lists
       for (var i = 0; i < lists.length; i++) {
@@ -92,7 +87,6 @@ var getLists = function () {
       }
       // Display list function
       function displayList(props) {
-        // console.log('Props:', props);
         var $row = $(`<a href="#"></a>`).text(props.name);
         var $list = $("<li>");
         $list.append($row);
@@ -116,7 +110,6 @@ var getContribs = function (user_id) {
     .then(function (response) {
       // console.log(response);
       var lists = response.data;
-      // console.log("response.data", response.data);
       // Loop through lists
       for (var i = 0; i < lists.length; i++) {
         // Display list
@@ -124,7 +117,6 @@ var getContribs = function (user_id) {
       }
       // Display list function
       function displayList(list) {
-        // console.log('Props:', props);
         var $data0 = $("<td>").text(list.name);
         var $data1 = $("<td>").text(list.description);
         var $row = $("<tr>");
@@ -148,7 +140,6 @@ var getFavourites = function (user_id) {
   // Get lists
   axios.get(`/api/users/${user_id}/favourites`)
     .then(function (response) {
-      // console.log(response);
       var lists = response.data;
       // Loop through lists
       for (var i = 0; i < lists.length; i++) {
@@ -157,7 +148,6 @@ var getFavourites = function (user_id) {
       }
       // Display list function
       function displayList(props) {
-        // console.log('Props:', props);
         var $row = $(`<a href="#"></a>`).text(props.name);
         var $starButton = $(`<td><i id="star-button" class="fa fa-pencil fa-2x" aria-hidden="true"></i></td>`);
         var $list = $("<li>");
@@ -186,7 +176,6 @@ var setUpMapListener = function () {
       title: "unnamed",
       description: "no description"
     };
-    // console.log(props);
     addMarkertoDB(props);
     addMarkerToMap(props);
   });
@@ -250,7 +239,6 @@ var addMarkerToMap = function (props) {
   props['coords'] = {};
   props.coords['lat'] = props.lat;
   props.coords['lng'] = props.lng;
-  // console.log('Props:', props);
   marker = new google.maps.Marker({
     id: props.id,
     user_id: props.user_id,
@@ -260,7 +248,6 @@ var addMarkerToMap = function (props) {
     position: props.coords,
     map: map,
     description: props.description
-    //icon:props.iconImage
   });
   marker.addListener('click', function () {
     showMarkerInfo(this);
@@ -274,13 +261,10 @@ var setUpMaps = function () {
   // Get markers
   axios.get('/api/markers')
     .then(function (response) {
-      // console.log(response);
       var markers = response.data;
       // Loop through markers
       for (var i = 0; i < markers.length; i++) {
         // Add marker
-        // console.log(markers[i]);
-        // addMarker(markers[i]);
       }
     })
     .catch(function (error) {
