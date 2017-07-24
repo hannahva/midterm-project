@@ -74,7 +74,7 @@ module.exports = (knex) => {
             console.log(err);
           } else {
             contrib = {
-              list_id: id[0], // ok this array was freaky
+              list_id: id[0],
               user_id: req.session.user.id
             };
             console.log("list: ", list);
@@ -195,7 +195,6 @@ module.exports = (knex) => {
     // perform validation here
     if (req.params.list_id > 0){
       let list = {};
-      // console.log(req.body);
       if (true) {
         list = {
           name: req.body.name,

@@ -4,7 +4,6 @@ const express = require('express');
 const router = express.Router();
 
 module.exports = (knex) => {
-
   // Get all users
   router.get("/", (req, res) => {
     knex
@@ -14,7 +13,6 @@ module.exports = (knex) => {
         res.json(results);
       });
   });
-
   // Get user favourites
   router.get("/:user_id/favourites", (req, res) => {
     if (req.params.user_id > 0) {
@@ -29,10 +27,8 @@ module.exports = (knex) => {
           } else {
             res.json(results);
           }
-
         });
     }
   });
-
   return router;
 };
