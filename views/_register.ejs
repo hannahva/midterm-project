@@ -1,7 +1,7 @@
 <% if (user) { %>
 
 <div class="col-sm-3 col-md-2 form-group register">
-  <div class="card selected-markerinfo" id="sidebar-card" style="width: 20rem;">
+  <div class="card selected-markerinfo" id="sidebar-card">
     <div class="insert-picture">
   <img class="card-img-top marker-default-img" src="/images/markers/globe-picture.png"
   alt="Card image cap">
@@ -10,12 +10,9 @@
     <h4 class="card-title header-selected-marker">Pick A Spot!</h4>
     <p class="card-text marker-description"></p>
   </div>
-  <div class="card-footer">
-      <small class="text-muted marker-position"></small>
-    </div>
-  <div class="card-footer">
-      <small class="text-muted marker-timestamp"></small>
+  <div class="footer">
       <div class="card-edit-button">
+      <small class="text-muted marker-timestamp"></small>
   <i id="pencil-button" class="fa fa-pencil fa-2x" aria-hidden="true"></i>
   </div>
     </div>

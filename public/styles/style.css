@@ -230,6 +230,7 @@ label[for="register"] {
   float: right;
   border: 2px solid #4095DE;
   border-radius: 5px;
+  height: 450px;
   margin-top: 20px;
   margin-right: 30px;
   background-color: white;
@@ -252,16 +253,19 @@ label[for="register"] {
   vertical-align: middle;
 }
 
-#star-button {
-  padding-left: 10px;
-}
-
-.card-footer {
+.footer {
+  position: absolute;
+  bottom: 0;
   padding: 5px;
 }
 
-.card-edit-button {
-  float: right;
+#pencil-button {
+  padding-left: 85px;
+  padding-bottom: 5px;
+}
+
+.marker-timestamp {
+  padding-bottom: 5px;
 }
 
 div.profile-link {

@@ -101,7 +101,6 @@ var getLists = function () {
         $list.on('click', function (event) {
           event.preventDefault();
           getMarkersFromList(props);
-          // renderFavouriteIcon();
           $('.hide-table-until-click').show();
         })
       }
@@ -168,6 +167,7 @@ var getFavourites = function (user_id) {
         $list.on('click', function (event) {
           event.preventDefault();
           getMarkersFromList(props);
+          $('.hide-table-until-click').show();
         })
       }
     })
