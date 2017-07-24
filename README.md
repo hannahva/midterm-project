@@ -40,3 +40,9 @@ The application is built using Node.js, Express, ES6 for server side & ES5 for t
 - pg 
 
 ## Final Product
+
+!["Screenshot of Login page"](https://github.com/hannahva/midterm-project/blob/master/public/docs/Login-page.png)
+!["Screenshot of List"](https://github.com/hannahva/midterm-project/blob/master/public/docs/list-page.png)
+!["Screenshot of Marker card"](https://github.com/hannahva/midterm-project/blob/master/public/docs/marker-card.png)
+!["Screenshot of update form"](https://github.com/hannahva/midterm-project/blob/master/public/docs/edit-marker.png)
+
