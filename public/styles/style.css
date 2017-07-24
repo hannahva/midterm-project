@@ -260,6 +260,10 @@ label[for="register"] {
   padding: 5px;
 }
 
+.card-edit-button {
+  float: right;
+}
+
 div.profile-link {
   float: right;
   margin-top: 15px;
