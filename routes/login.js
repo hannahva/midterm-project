@@ -4,7 +4,6 @@ const express = require('express');
 const router  = express.Router();
 const bcrypt = require('bcrypt');
 
-
 module.exports = (knex) => {
   const checkUserCredentials = (givenEmail, givenPW, callback) => {
     knex("users")
@@ -26,7 +25,6 @@ module.exports = (knex) => {
       });
   };
 
-
   router.get("/", (req, res) => {
     if(req.session.user){
       res.redirect("/");
@@ -35,6 +33,7 @@ module.exports = (knex) => {
     res.render("index");
   });
 
+//if user exists redirect to home page
   router.route("/").post((req, res) => {
     const email = req.body.email;
     const password = req.body.password;

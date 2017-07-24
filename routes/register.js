@@ -43,20 +43,16 @@ module.exports = (knex) => {
         } else if ((req.body.email && req.body.password) === "") {
           req.flash('errors', 'Invalid Information');
           res.redirect("/");
-
         } else {
           createUser(req.body.email, req.body.password)
             .then(function (user) {
               req.session.user = user[0];
-              // console.log(user[0])
               res.redirect("/");
               return;
             });
         }
       }
-
     });
-
   });
   return router;
 };
