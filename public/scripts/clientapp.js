@@ -15,8 +15,8 @@ var renderMarkerHeader = function (list) {
 var getMarkersFromList = function (list) {
 
   selectedList = list.id;
-  checkFavourite(Window.userInfo, selectedList);
-  console.log("isFavourite", isFavourite);
+  // checkFavourite(Window.userInfo, selectedList);
+  // console.log("isFavourite", isFavourite);
   renderMarkerHeader(list);
   clearMarkers();
 
@@ -262,13 +262,6 @@ var addMarkerToMap = function (props) {
   });
   marker.addListener('click', function () {
     showMarkerInfo(this);
-  });
-  marker.addListener('rightclick', function () {
-    console.log("Marker Info:", this);
-    showMarkerInfo(this);
-    var p = $(".location-edit-marker").position();
-    $(window).scrollTop(p.top);
-    // $('#myModal').modal('toggle');
   });
   markerOnMap.push(marker);
 }
