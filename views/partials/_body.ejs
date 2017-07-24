@@ -1,11 +1,34 @@
-<% if (user) { %>
+<!DOCTYPE html>
+  <% if (user) { %>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-sm-2 col-md-2 sidebar">
+          <h1>Favourites</h1>
+            <ul class="nav nav-sidebar list-favourites">
+              <!-- Favourite lists here -->
+            </ul>
+          <h1>All Lists</h1>
+            <ul class="nav nav-sidebar list-all">
+              <!-- All lists here -->
+            </ul>
+        </div>
+            <% include ../_register %>
+        <div class="col-sm-7 col-sm-offset-2 col-md-8 col-md-offset-2 main">
+          <!-- <h1 class=“page-header”>WikiMaps</h1> -->
+          <div class="row placeholders">
+            <div id="map" class="col-xs-12 col-sm-6">
+            </div>
+          </div>
+            <% include _markers %>
+            <br>
+            <% include _add-list %>
+        </div>
+      </div>
+    </div>
+  <% } else { %>
   <div class="container-fluid">
     <div class="row">
       <div class="col-sm-2 col-md-2 sidebar">
-        <h1>Favourites</h1>
-          <ul class="nav nav-sidebar list-favourites">
-            <!-- Favourite lists here -->
-          </ul>
         <h1>All Lists</h1>
           <ul class="nav nav-sidebar list-all">
             <!-- All lists here -->
@@ -18,29 +41,7 @@
           <div id="map" class="col-xs-12 col-sm-6">
           </div>
         </div>
-          <% include _markers %>
-          <br>
-          <% include _add-list %>
       </div>
-    </div>
-  </div>
-<% } else { %>
-<div class="container-fluid">
-  <div class="row">
-    <div class="col-sm-2 col-md-2 sidebar">
-      <h1>All Lists</h1>
-        <ul class="nav nav-sidebar list-all">
-          <!-- All lists here -->
-        </ul>
-    </div>
-        <% include ../_register %>
-    <div class="col-sm-7 col-sm-offset-2 col-md-8 col-md-offset-2 main">
-      <!-- <h1 class=“page-header”>WikiMaps</h1> -->
-      <div class="row placeholders">
-        <div id="map" class="col-xs-12 col-sm-6">
-        </div>
-  </div>
-</div>
-
-<% } %>
+  <% } %>
+</html>
 
