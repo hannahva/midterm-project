@@ -101,7 +101,6 @@ var getLists = function () {
         $list.on('click', function (event) {
           event.preventDefault();
           getMarkersFromList(props);
-          // renderFavouriteIcon();
           $('.hide-table-until-click').show();
         })
       }

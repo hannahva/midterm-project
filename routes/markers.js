@@ -102,7 +102,7 @@ module.exports = (knex) => {
 
   // Delete marker
   router.delete("/:marker_id", (req, res) => {
-    if (req.params.list_id > 0) {
+    if (req.params.marker_id > 0) {
       knex("markers")
         .where("id", req.params.marker_id)
         .del()

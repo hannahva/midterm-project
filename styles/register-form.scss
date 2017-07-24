@@ -44,6 +44,7 @@ label[for="register"] {
   float: right;
   border: 2px solid #4095DE;
   border-radius: 5px;
+  height:450px;
   margin-top: 20px;
   margin-right: 30px;
   background-color: white;
@@ -63,13 +64,12 @@ label[for="register"] {
 .header-selected-marker {
   vertical-align: middle;
 }
-#star-button {
-  padding-left: 10px;
-}
- .card-footer {
+
+ .footer {
   padding: 5px;
  }
 
 .card-edit-button {
   float: right;
+  padding: 5px;
 }
