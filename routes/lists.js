@@ -233,15 +233,14 @@ module.exports = (knex) => {
 
   // Delete list
   router.delete("/:list_id", (req, res) => {
-    if (req.params.list_id > 0) {
     knex("lists")
       .where("id", req.params.list_id)
       .del()
       .then((results) => {
         console.log(`Delete successful`);
-        res.redirect("/");
+        res.send(`delete successful\n`)
       });
-    };
+
   });
 
   return router;
