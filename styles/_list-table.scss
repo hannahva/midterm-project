@@ -1,23 +1,20 @@
 #garbage-can:hover {
   color: red;
   cursor: pointer;
-
 }
-
 
 #pencil-button:hover {
   color:#a3ccff;
   cursor: pointer;
-
 }
 
 #star-button {
-  text-align: center;
   cursor: pointer;
+  text-align: center;
 }
 
-.star-button-active {
-  color:yellow;
+#star-button.fa-pencil {
+  margin-left: 10px;
 }
 
 .hide-table-until-click {

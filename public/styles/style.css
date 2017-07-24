@@ -46,12 +46,12 @@ body {
 }
 
 #star-button {
-  text-align: center;
   cursor: pointer;
+  text-align: center;
 }
 
-.star-button-active {
-  color: yellow;
+#star-button.fa-pencil {
+  margin-left: 10px;
 }
 
 .hide-table-until-click {
@@ -210,16 +210,6 @@ tr {
   background-color: #a3ccff;
 }
 
-.btn.btn-danger {
-  cursor: pointer;
-  font-size: 2em;
-}
-
-.btn.btn-warning {
-  cursor: pointer;
-  font-size: 2em;
-}
-
 label[for="register"] {
   color: #4095DE;
   font-size: 3em;
@@ -281,4 +271,21 @@ div.profile-link {
 a.profile {
   color: #EFFAF8;
   font-size: 3em;
+}
+
+div.edit-form {
+  margin-left: 100px;
+}
+
+form .btn.btn-danger {
+  cursor: pointer;
+  font-size: 2em;
+  margin-top: -20px;
+}
+
+form .btn.btn-warning {
+  cursor: pointer;
+  font-size: 2em;
+  margin-right: 10px;
+  margin-top: -40px;
 }
