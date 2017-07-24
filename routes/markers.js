@@ -83,8 +83,9 @@ module.exports = (knex) => {
           }
         });
     }
-  });
 
+  });
+  // get form to perform update
   router.get("/:marker_id/edit", (req, res) => {
     var getMarker = function (markerId, callback) {
       knex("markers")
@@ -93,8 +94,8 @@ module.exports = (knex) => {
           callback(results);
         })
     }
-    getMarker(req.params.marker_id, function (results) {
-      return res.render("markers/edit", results[0]);
+    getMarker(req.params.marker_id, function(results){
+      return res.render("markers/edit-marker", results[0]);
     })
   })
 
@@ -106,9 +107,11 @@ module.exports = (knex) => {
         .del()
         .then((results) => {
           console.log(`Delete Successful`);
+          res.redirect("/");
           // res.send(`Delete Successful\n`);
         });
     }
+
   });
 
   return router;

@@ -122,7 +122,7 @@ module.exports = (knex) => {
               });
           } else {
             console.log("exists!");
-            // Delete it 
+            // Delete it
             knex('favourites')
               .where('user_id', req.session.user.id)
               .andWhere('list_id', req.params.list_id)
@@ -170,7 +170,7 @@ module.exports = (knex) => {
               });
           } else {
             console.log("exists!");
-            // Delete it 
+            // Delete it
             knex('favourites')
               .where('user_id', req.session.user.id)
               .andWhere('list_id', req.params.list_id)
@@ -191,7 +191,7 @@ module.exports = (knex) => {
   });
 
   // Update list
-  router.put("/:list_id", (req, res) => {
+  router.post("/:list_id/update", (req, res) => {
     // perform validation here
     if (req.params.list_id > 0){
     let list = {};
@@ -210,23 +210,42 @@ module.exports = (knex) => {
           console.log(err);
         } else {
           console.log(`Update successful`);
+          res.redirect("/");
           // res.send(`Update successful\n`);
         }
       });
     }
   });
+  // get form to perform update
+  router.get("/:list_id/edit", (req, res) => {
+    var getMarker = function (listId, callback){
+       knex("lists")
+      .where("id", listId)
+      .then(function(results) {
+        callback(results);
+      })
+    }
+    getMarker(req.params.list_id, function(results){
+      console.log(results[0])
+      return res.render("partials/edit-list", results[0]);
+    })
+  })
 
   // Delete list
-  router.delete("/:list_id", (req, res) => {
-    knex("lists")
-      .where("id", req.params.list_id)
+  router.get("/:list_id/delete", (req, res) => {
+    knex("contributions")
+      .where("list_id", req.params.list_id)
       .del()
       .then((results) => {
-        console.log(`Delete successful`);
-        res.send(`Delete successful\n`);
-      });
+        knex("lists")
+          .where("id", req.params.list_id)
+          .del()
+          .then((results) => {
+            console.log(`Delete successful`);
+            res.redirect("/")
+          });
+      })
   });
 
   return router;
-
-}
+};
