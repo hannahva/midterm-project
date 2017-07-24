@@ -170,7 +170,7 @@ module.exports = (knex) => {
               });
           } else {
             console.log("exists!");
-            // Delete it 
+            // Delete it
             knex('favourites')
               .where('user_id', req.session.user.id)
               .andWhere('list_id', req.params.list_id)
@@ -210,6 +210,7 @@ module.exports = (knex) => {
           console.log(err);
         } else {
           console.log(`Update successful`);
+          res.redirect("/");
           // res.send(`Update successful\n`);
         }
       });
@@ -232,13 +233,15 @@ module.exports = (knex) => {
 
   // Delete list
   router.delete("/:list_id", (req, res) => {
+    if (req.params.list_id > 0) {
     knex("lists")
       .where("id", req.params.list_id)
       .del()
       .then((results) => {
         console.log(`Delete successful`);
-        res.send(`Delete successful\n`);
+        res.redirect("/");
       });
+    };
   });
 
   return router;
