@@ -39,7 +39,7 @@ app.use(methodOverride('_method'));
 app.use(cookieSession({
   name: "session",
   keys: ["banana", "blue"]
-}))
+}));
 app.use(flash());
 
 // Log knex SQL queries to STDOUT as well
@@ -59,7 +59,7 @@ app.use(express.static("public"));
 app.use((req, res, next) => {
   app.locals.user = req.session.user;
   next();
-})
+});
 
 // Mount all resource routes
 app.use("/api/users", usersRoutes(knex));
@@ -75,7 +75,7 @@ app.get("/", (req, res) => {
   res.render('index', {
     errors: req.flash('errors'),
     errorsMessage: req.flash('errorsMessage')
- });
+  });
 });
 
 app.listen(PORT, () => {
