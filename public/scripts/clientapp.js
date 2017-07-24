@@ -237,6 +237,7 @@ var showMarkerInfo = function (clickedMarker) {
 
   $('#sidebar-card').show();
 
+
       // click on pencil icon, go to edit page, edit current marker
       $('#pencil-button').click(function () {
         console.log("i was clicked");
