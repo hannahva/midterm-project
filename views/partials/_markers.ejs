@@ -1,23 +1,23 @@
-<% if (user) { %>
+<!DOCTYPE html>
+  <% if (user) { %>
   <div class="hide-table-until-click">
     <div>
-        <h2 class="sub-header header-all-markers">Click list to see markers
-        </h2>
-        <div class="table-responsive">
-            <table class="table table-striped">
-                <thead>
-                    <tr>
-                        <th>Title</th>
-                        <th>Description</th>
-
-                    </tr>
-                </thead>
-                <tbody class="table-markerinfo">
-                    <!-- Marker info goes here -->
-                </tbody>
-            </table>
-            <br>
-        </div>
+      <h2 class="sub-header header-all-markers">Click list to see markers</h2>
+      <div class="table-responsive">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>Title</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+            <tbody class="table-markerinfo">
+                <!-- Marker info goes here -->
+            </tbody>
+        </table>
+          <br>
+      </div>
     </div>
-    </div>
-    <% } %>
+  </div>
+  <% } %>
+</html>

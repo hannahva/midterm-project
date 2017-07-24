@@ -1,43 +1,43 @@
+<!DOCTYPE html>
 <% if (user) { %>
-
-<div class="col-sm-3 col-md-2 form-group register">
-  <div class="card selected-markerinfo" id="sidebar-card">
-    <div class="insert-picture">
-  <img class="card-img-top marker-default-img" src="/images/markers/globe-picture.png"
-  alt="Card image cap">
+  <div class="col-sm-3 col-md-2 form-group register">
+    <div class="card selected-markerinfo" id="sidebar-card">
+      <div class="insert-picture">
+        <img class="card-img-top marker-default-img" src="/images/markers/globe-picture.png"
+        alt="Card image cap">
+      </div>
+    <div class="card-block marker-all-info">
+      <h4 class="card-title header-selected-marker">Pick A Spot!</h4>
+      <p class="card-text marker-description"></p>
     </div>
-  <div class="card-block marker-all-info">
-    <h4 class="card-title header-selected-marker">Pick A Spot!</h4>
-    <p class="card-text marker-description"></p>
-  </div>
-  <div class="footer">
+    <div class="footer">
       <div class="card-edit-button">
-      <small class="text-muted marker-timestamp"></small>
-  <i id="pencil-button" class="fa fa-pencil fa-2x" aria-hidden="true"></i>
+        <small class="text-muted marker-timestamp"></small>
+        <i id="pencil-button" class="fa fa-pencil fa-2x" aria-hidden="true"></i>
+      </div>
+    </div>
+    </div>
   </div>
+  <% } else if (!user) { %>
+  <div class="col-sm-3 col-md-2 form-group register">
+    <form id="register" action="/api/register" method="POST">
+        <label for="register">Sign Up</label>
+        <input type="email" class="form-control" name="email" placeholder="Enter Email">
+        <input type="password" class="form-control" name="password" placeholder="Enter Password">
+        <input type="submit" class="btn btn-primary" value="Sign Up">
+    </form>
+    <% if (errors && errors.length) { %>
+    <div class="error-message-register">
+      <% errors.forEach(error => { %>
+        <p>Sorry! <%= error %></p>
+      <% }); %>
     </div>
-</div>
-</div>
-<% } else if (!user) { %>
-<div class="col-sm-3 col-md-2 form-group register">
-  <form id="register" action="/api/register" method="POST">
-      <label for="register">Sign Up</label>
-      <input type="email" class="form-control" name="email" placeholder="Enter Email">
-      <input type="password" class="form-control" name="password" placeholder="Enter Password">
-      <input type="submit" class="btn btn-primary" value="Sign Up">
-  </form>
-
-  <% if (errors && errors.length) { %>
-  <div class="error-message-register">
-    <% errors.forEach(error => { %>
-      <p>Sorry! <%= error %></p>
-    <% }); %>
-    </div>
-  <% } else { %>
-  <p class="sign-up-message">Sign in or sign up to view more maps!</p>
-  <% } %>
-</div>
+    <% } else { %>
+    <p class="sign-up-message">Sign in or sign up to view more maps!</p>
+    <% } %>
+  </div>
 <% } %>
+</html>
 
 
 
