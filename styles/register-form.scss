@@ -66,12 +66,16 @@ label[for="register"] {
 }
 
  .footer {
-  position: absolute;
+  position:absolute;
   bottom: 0;
   padding: 5px;
  }
 
-.card-edit-button {
-  float: right;
-  padding: 5px;
+#pencil-button {
+  padding-left: 85px;
+  padding-bottom: 5px;
+}
+
+.marker-timestamp {
+  padding-bottom: 5px;
 }

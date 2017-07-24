@@ -259,9 +259,13 @@ label[for="register"] {
   padding: 5px;
 }
 
-.card-edit-button {
-  float: right;
-  padding: 5px;
+#pencil-button {
+  padding-left: 85px;
+  padding-bottom: 5px;
+}
+
+.marker-timestamp {
+  padding-bottom: 5px;
 }
 
 div.profile-link {

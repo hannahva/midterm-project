@@ -167,6 +167,7 @@ var getFavourites = function (user_id) {
         $list.on('click', function (event) {
           event.preventDefault();
           getMarkersFromList(props);
+          $('.hide-table-until-click').show();
         })
       }
     })
